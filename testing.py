@@ -1,7 +1,5 @@
 #testing file
 
+from mainmodules import boarder
 
-from mainmodules import screen as screanclass
-
-print screanclass.screen()
-print screanclass.t()
+boarder.boarder()
