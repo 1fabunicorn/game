@@ -16,6 +16,11 @@ class HelloWorld(cmd.Cmd):
     def do_EOF(self, line):
         print
         return True
+    def do_test(self, line):
+        '''
+        This is only a test
+        '''
+        print 'This is a test command.'
 
 
 if __name__ == '__main__':
