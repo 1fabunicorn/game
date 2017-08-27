@@ -3,6 +3,7 @@ import cmd
 
 class HelloWorld(cmd.Cmd):
     prompt = '$ '
+
     def do_greet(self, person):
         """
         greet [person]
@@ -16,6 +17,7 @@ class HelloWorld(cmd.Cmd):
     def do_EOF(self, line):
         print
         return True
+
     def do_test(self, line):
         '''
         This is only a test
