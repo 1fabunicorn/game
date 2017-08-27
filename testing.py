@@ -1,7 +1,22 @@
-#testing file
+import cmd
 
-from mainmodules import boarder
-from mainmodules import DotDotDot as dot
-#boarder.boarder()
 
-dot.dot(15,'', '.', .5)
+class HelloWorld(cmd.Cmd):
+    prompt = '$ '
+    def do_greet(self, person):
+        """
+        greet [person]
+        Greet the named person
+        """
+        if person:
+            print 'hi ' + person
+        else:
+            print 'hi'
+
+    def do_EOF(self, line):
+        print
+        return True
+
+
+if __name__ == '__main__':
+    HelloWorld().cmdloop()
