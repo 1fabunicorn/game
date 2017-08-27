@@ -16,3 +16,6 @@ Why else would they make this illegal???
 
 ![cool old terminal gif](http://i.imgur.com/sOZ9jYG.gif)
 
+TODO: implement CommandPrompt.py module to do basic unix stuff such as 'cd', 'mv', 'ls'.
+
+TODO: make the 'game directory' (the place the user ghas access to files)
