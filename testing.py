@@ -18,11 +18,14 @@ class HelloWorld(cmd.Cmd):
         print
         return True
 
-    def do_test(self, line):
+    def do_test(self, var1):
         '''
         This is only a test
         '''
-        print 'This is a test command.'
+
+        split = var1.split()
+
+        print 'var1: ' + split[0] + ' var2: ' + split[1]
 
 
 if __name__ == '__main__':
