@@ -3,14 +3,15 @@ from shlex import split
 # from https://pymotw.com/3/cmd/
 
 class HelloWorld(cmd.Cmd):
+
     prompt = '$ '
 
 
     def do_greet(self, person):
-        """
+        '''
         greet [person]
         Greet the named person
-        """
+        '''
         if person:
             print 'hi ' + person
         else:
@@ -29,7 +30,6 @@ class HelloWorld(cmd.Cmd):
 
         print 'var1: ' + split[0] + ' var2: ' + split[1]
 
-"""
-if __name__ == '__main__':
+
+if __name__ == 'mainmodules.CommandPrompt': # it works with this!!!
     HelloWorld().cmdloop()
-"""
