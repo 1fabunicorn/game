@@ -5,9 +5,8 @@ import sys
 from shlex import split
 
 
-class HelloWorld(cmdcopy.Cmd):
 
-    prompt = os.getcwd() + '$ '
+class HelloWorld(cmdcopy.Cmd):
 
     def do_greet(self, person):
         '''
@@ -39,9 +38,6 @@ builtins
 
         except OSError:
             print 'not a directory'
-
-        prompt = os.getcwd() + '$ '
-        print os.getcwd()
 
     def do_pwd(self, nothing):
         '''
