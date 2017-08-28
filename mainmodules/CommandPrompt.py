@@ -1,11 +1,13 @@
 import cmd
+import subprocess
+import os
 from shlex import split
-# from https://pymotw.com/3/cmd/
+
+
 
 class HelloWorld(cmd.Cmd):
 
     prompt = '$ '
-
 
     def do_greet(self, person):
         '''
@@ -17,18 +19,46 @@ class HelloWorld(cmd.Cmd):
         else:
             print 'hi'
 
-    def do_EOF(self, line):
+    def do_EOF(self,nothing):
         print
         return True
 
-    def do_test(self, var1):
-        '''
-        This is only a test
-        '''
+    """
+builtins 
+    """
 
-        split = var1.split(' ')
 
-        print 'var1: ' + split[0] + ' var2: ' + split[1]
+    def do_cd(self, directory): #change directory
+        '''
+        syntax 'cd [directory]'
+        change to [directory]
+        '''
+        args = directory.split(' ')
+        try:
+            os.chdir(args[0])
+
+        except OSError:
+            print 'not a directory'
+
+    def do_pwd(self, nothing):
+        '''
+        syntax 'pwd'
+        print working directory
+        '''
+        subprocess.check_call('pwd')
+
+    def do_tree(self,line): # make a
+        pass
+
+    def do_cat(self, file):
+        try:
+            subprocess.check_call(['cat', file])
+            print
+
+        except KeyboardInterrupt:
+            raise
+        except:
+            pass
 
 
 if __name__ == 'mainmodules.CommandPrompt': # it works with this!!!
