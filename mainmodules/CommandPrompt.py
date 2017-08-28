@@ -1,13 +1,13 @@
 import cmd
 import subprocess
 import os
+import sys
 from shlex import split
-
 
 
 class HelloWorld(cmd.Cmd):
 
-    prompt = '$ '
+    prompt = os.getcwd() + '$ '
 
     def do_greet(self, person):
         '''
@@ -24,7 +24,7 @@ class HelloWorld(cmd.Cmd):
         return True
 
     """
-builtins 
+builtins
     """
 
 
@@ -39,6 +39,8 @@ builtins
 
         except OSError:
             print 'not a directory'
+        prompt = os.getcwd() + '$ '
+        print os.getcwd()
 
     def do_pwd(self, nothing):
         '''
