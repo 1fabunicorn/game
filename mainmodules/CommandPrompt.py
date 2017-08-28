@@ -39,6 +39,7 @@ builtins
 
         except OSError:
             print 'not a directory'
+
         prompt = os.getcwd() + '$ '
         print os.getcwd()
 
@@ -60,7 +61,7 @@ builtins
         except KeyboardInterrupt:
             raise
         except:
-            pass
+            raise
 
 
 if __name__ == 'mainmodules.CommandPrompt': # it works with this!!!
