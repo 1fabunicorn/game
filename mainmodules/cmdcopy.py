@@ -44,7 +44,7 @@ functions respectively.
 These interpreters use raw_input; thus, if the readline module is loaded,
 they automatically support Emacs-like command history and editing features.
 """
-
+import os
 import string
 
 __all__ = ["Cmd"]
@@ -127,7 +127,7 @@ class Cmd:
                 else:
                     if self.use_rawinput:
                         try:
-                            line = raw_input(self.prompt)
+                            line = raw_input(os.getcwd() + '$ ')
                         except EOFError:
                             line = 'EOF'
                     else:
@@ -141,7 +141,7 @@ class Cmd:
                 line = self.precmd(line)
                 stop = self.onecmd(line)
                 stop = self.postcmd(stop, line)
-            self.postloop()
+            self.postcmd()
         finally:
             if self.use_rawinput and self.completekey:
                 try:
@@ -160,6 +160,8 @@ class Cmd:
 
     def postcmd(self, stop, line):
         """Hook method executed just after a command dispatch is finished."""
+        PROMPT = '(Cmd) '
+        prompt = PROMPT
         return stop
 
     def preloop(self):

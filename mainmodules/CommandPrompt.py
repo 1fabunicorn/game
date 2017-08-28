@@ -1,11 +1,11 @@
-import cmd
+import cmdcopy
 import subprocess
 import os
 import sys
 from shlex import split
 
 
-class HelloWorld(cmd.Cmd):
+class HelloWorld(cmdcopy.Cmd):
 
     prompt = os.getcwd() + '$ '
 
