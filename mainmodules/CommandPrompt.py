@@ -13,12 +13,12 @@ class HelloWorld(cmdcopy.Cmd):
         Greet the named person
         '''
         if person:
-            print 'hi ' + person
+            print('hi ' + person)
         else:
-            print 'hi'
+            print('hi')
 
     def do_EOF(self,nothing):
-        print
+        print()
         return True
 
     """
@@ -36,7 +36,7 @@ builtins
             os.chdir(args[0])
 
         except OSError:
-            print 'not a directory'
+            print('not a directory')
 
     def do_pwd(self, nothing):
         '''
@@ -59,12 +59,24 @@ builtins
     def do_cat(self, file):
         try:
             subprocess.check_call(['cat', file])
-            print
-
-        except KeyboardInterrupt:
-            raise
+            print()
         except:
             raise
+
+
+    def do_txtedit(self, file): # broken. need to figure out a way to write to the next line. user_data overwrites each other
+        while True:
+            f = open(file, 'w')
+            user_data = raw_input()
+
+            if user_data == 'exit()':
+                break
+            else:
+                f.write(user_data)
+
+
+    def do_touch(self,file):
+        subprocess.call(['touch', file])
 
 
 if __name__ == 'mainmodules.CommandPrompt': # it works with this!!!

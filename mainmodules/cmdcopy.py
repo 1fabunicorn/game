@@ -141,7 +141,7 @@ class Cmd:
                 line = self.precmd(line)
                 stop = self.onecmd(line)
                 stop = self.postcmd(stop, line)
-            self.postcmd()
+            self.postcmd(stop)
         finally:
             if self.use_rawinput and self.completekey:
                 try:
