@@ -1,7 +1,6 @@
 import cmdcopy
 import subprocess
 import os
-import sys
 from shlex import split
 
 
@@ -48,6 +47,14 @@ builtins
 
     def do_tree(self,line): # make a
         pass
+
+    def do_ls(self,args):
+        try:
+            subprocess.check_call(['ls', args])
+        except:
+            subprocess.check_call(['ls'])
+            # strange behavior:   ls: fts_open: No such file or directory
+
 
     def do_cat(self, file):
         try:
