@@ -6,6 +6,7 @@ from shlex import split
 
 
 class HelloWorld(cmdcopy.Cmd):
+    dir = subprocess.check_call('pwd')
 
     def do_greet(self, person):
         '''
@@ -27,6 +28,7 @@ builtins
 
 
     def do_cd(self, directory): #change directory
+
         '''
         syntax 'cd [directory]'
         change to [directory]
@@ -64,20 +66,27 @@ builtins
             raise
 
 
-    def do_txtedit(self, file): # broken. need to figure out a way to write to the next line. user_data overwrites each other
-        while True:
-            f = open(file, 'w')
-            user_data = raw_input()
 
+
+
+
+
+
+    def do_txtedit(self, file): # writes a () to the end of the last word
+        data = []
+        while True:
+            user_data = raw_input()
             if user_data == 'exit()':
+
+                f = open(file, 'w')
+                # print(tobewriten)
+                f.write("\n".join(str(x) for x in data))
                 break
             else:
-                f.write(user_data)
-
+                data.append(user_data)
 
     def do_touch(self,file):
         subprocess.call(['touch', file])
-
 
 if __name__ == 'mainmodules.CommandPrompt': # it works with this!!!
     HelloWorld().cmdloop()
