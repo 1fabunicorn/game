@@ -4,9 +4,8 @@ import os
 from shlex import split
 
 
-
 class HelloWorld(cmdcopy.Cmd):
-    dir = subprocess.check_call('pwd')
+    os.chdir('user')  # changes directory to 'user'
 
     def do_greet(self, person):
         '''
@@ -28,15 +27,22 @@ builtins
 
 
     def do_cd(self, directory): #change directory
-
         '''
         syntax 'cd [directory]'
         change to [directory]
         '''
+
         args = directory.split(' ')
+        # next 6 lines are cheater proof biz
+        if args[0] == 'game':
+            print('not a directory')
+            return
+        if os.path.split(os.getcwd())[1] == 'user' and args[0] == '..':
+            print('not a directory')
+            return
+
         try:
             os.chdir(args[0])
-
         except OSError:
             print('not a directory')
 
@@ -51,11 +57,14 @@ builtins
         pass
 
     def do_ls(self,args):
+
+
         try:
             subprocess.check_call(['ls', args])
         except:
-            subprocess.check_call(['ls'])
-            # strange behavior:   ls: fts_open: No such file or directory
+            l = os.listdir(os.getcwd())
+            for file in l:
+                print file
 
 
     def do_cat(self, file):
