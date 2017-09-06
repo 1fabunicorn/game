@@ -64,7 +64,7 @@ builtins
         except:
             l = os.listdir(os.getcwd())
             for file in l:
-                print file
+                print(file)
 
 
     def do_cat(self, file):
@@ -73,6 +73,10 @@ builtins
             print()
         except:
             raise
+
+    def do_altextedit(self, file):
+        while True:
+            raw_input()
 
 
 
@@ -93,6 +97,7 @@ builtins
                 break
             else:
                 data.append(user_data)
+
 
     def do_touch(self,file):
         subprocess.call(['touch', file])
