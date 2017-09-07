@@ -75,6 +75,7 @@ builtins
             raise
 
     def do_altextedit(self, file):
+        pass
         while True:
             raw_input()
 

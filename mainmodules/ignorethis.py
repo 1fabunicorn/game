@@ -5,19 +5,17 @@ vigenere cipher
 
 def encrypt(plaintext, key):
     cyphertext = []
+    len_of_key = len(key)
 
     for keyindex, plaintext in enumerate(plaintext):
-        cyphertext.append( ord(plaintext) + ord(key[keyindex]) % (len(key)-1) % 256)
+        cyphertext.append(ord(plaintext) + ord(key[keyindex % len_of_key]) % 255)
     return cyphertext
 
 
-def decrypt(numbers, key):
+def decrypt(cyphertext, key):
     plaintext = []
+    len_of_key = len(key)
 
-    for keyindex, cyphertext in enumerate(numbers):
-        plaintext.append(chr(cyphertext - (ord(key[keyindex])) % (len(key) - 1) % 256))
+    for keyindex, numbers in enumerate(cyphertext):
+        plaintext.append(chr(numbers - ord(key[keyindex % len_of_key]) % 255))
     return plaintext
-
-
-print(encrypt("abc", 'dasdas'))
-print(decrypt([97, 100, 99], 'dasdas'))
