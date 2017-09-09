@@ -1,13 +1,13 @@
 """
 Nova Trauben
-vigenere cipher
+vigenere cipher, as well as writing of cyphertext to file
 
 Notes:
     It seems this function is relatively efficient, as timeit says,
     10000 loops, best of 3: 59.4 usec per loop
     returns a list of encrypted values, and plaintext values. Not sure where to go from their.
 """
-
+import pickle
 
 def encrypt(plaintext, key):
     cyphertext = []
@@ -27,15 +27,11 @@ def decrypt(cyphertext, key):
     return "".join(plaintext)
 
 
-def write_plaintext(cyphertext, key, file_to_create, ):
-    pass
+def write_plaintext(cyphertext, key, file_to_create):
+    with open(cyphertext, 'rb') as file:
+        encrypted = pickle.load(file)
 
-    file = open(cyphertext, 'r')
-    file_name = file.readline()
-    file_name += ".txt"
+    plaintext = decrypt(encrypted,key)
 
-    for words in cyphertext:
-        file_to_create = open(file_to_create, 'a')
-        file_to_create.write(decrypt(cyphertext, key))
-
-    print(file_name)
+    with open(file_to_create, 'w') as f:
+        f.write(plaintext)
