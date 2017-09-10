@@ -2,6 +2,7 @@ import cmdcopy
 import subprocess
 import os
 from shlex import split
+import tempfile
 
 
 class HelloWorld(cmdcopy.Cmd):
@@ -22,7 +23,7 @@ class HelloWorld(cmdcopy.Cmd):
         return True
 
     """
-builtins
+ported builtins
     """
 
 
@@ -74,34 +75,20 @@ builtins
         except:
             raise
 
-    def do_altextedit(self, file):
-        pass
-        while True:
-            raw_input()
+    def do_clear(self,line):
+        print("\n"*15)
 
+    def do_nano(self, file):
+        osCommandString = "nano" + file
+        os.system(osCommandString)
 
-
-
-
-
-
-
-    def do_txtedit(self, file): # writes a () to the end of the last word
-        data = []
-        while True:
-            user_data = raw_input()
-            if user_data == 'exit()':
-
-                f = open(file, 'w')
-                # print(tobewriten)
-                f.write("\n".join(str(x) for x in data))
-                break
-            else:
-                data.append(user_data)
-
+    def do_vi(self, file):
+        osCommandString = "vi" + file
+        os.system(osCommandString)
 
     def do_touch(self,file):
         subprocess.call(['touch', file])
+
 
 if __name__ == 'mainmodules.CommandPrompt': # it works with this!!!
     HelloWorld().cmdloop()
