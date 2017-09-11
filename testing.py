@@ -11,9 +11,5 @@ cyphertext = ignorethis.encrypt(welcome,'resist')
 
 ignorethis.write_plaintext('articles/welcome.encrypted.txt', key='resist', file_to_create='welcome.blob')
 """
-import subprocess
-import tempfile
 import os
-import re
-osCommandString = "nano file.txt"
-os.system(osCommandString)
+print os.path.split('user/game/bla/x/y/z')
