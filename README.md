@@ -17,13 +17,16 @@ Why else would they make this illegal???
 
 TODO:
 
-    - [ ] check command (for user too check progress on game)
-            - [x] write function
-            - [x] tell user what file to refer too for help
-            - [ ] ...
+   1. [ ] check command (for user too check progress on game)
+        
+        2.  [x] write function
+        
+        3. [x] tell user what file to refer too for help
+        
+        4. [ ] ...
 
-    - [x] some sort of game percentages
+   1. [x] some sort of game percentages
 
-    - [x] implement CommandPrompt.py module to do basic unix stuff such as 'cd', 'mv', 'ls'.
+   2. [x] implement CommandPrompt.py module to do basic unix stuff such as 'cd', 'mv', 'ls'.
 
-    - [x] make the 'game directory' (the place the user has access to files)
+   3. [x] make the 'game directory' (the place the user has access to files)
