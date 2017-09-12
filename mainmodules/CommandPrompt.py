@@ -2,7 +2,6 @@ import cmdcopy
 import subprocess
 import os
 from shlex import split
-import tempfile
 import sys
 
 
@@ -19,8 +18,12 @@ class HelloWorld(cmdcopy.Cmd):
         else:
             print('hi')
 
+
     def do_EOF(self, line):
-        sys.exit('\n')
+        '''
+        syntax 'EOF'
+        '''
+        sys.exit('bye!')
 
 
 #ported builtins
@@ -53,12 +56,27 @@ class HelloWorld(cmdcopy.Cmd):
         '''
         subprocess.check_call('pwd')
 
-    def do_tree(self,line): # make a
-        pass
+    def do_tree(self, nothing):
+        '''
+        syntax 'tree'
+        prints the directory structure as a tree
+
+        '''
+        # credit to dhobbs
+        # https://stackoverflow.com/questions/9727673/list-directory-tree-structure-in-python/9728478#9728478
+
+        startpath = os.getcwd()
+        for root, dirs, files in os.walk(startpath):
+            level = root.replace(startpath, '').count(os.sep)
+            indent = ' ' * 4 * (level)
+            print('{}{}/'.format(indent, os.path.basename(root)))
+            subindent = ' ' * 4 * (level + 1)
+            for f in files:
+                print('{}{}'.format(subindent, f))
 
     def do_ls(self, args):
         '''
-
+        syntax 'ls [optional args]'
         list files and directory's.
         If no args are specified, ls will print in alphabetical order
         for extended help, specify --help
@@ -70,8 +88,7 @@ class HelloWorld(cmdcopy.Cmd):
             -b  --escape
               print C-style escapes for nongraphic characters
             -h  --human-readable
-              with -l and/or -s, print human readable sizes (e.g., 1K 234M
-              2G)
+              with -l and/or -s, print human readable sizes (e.g., 1K, 234M, 2G)
             -I  --ignore=PATTERN
               do not list implied entries matching shell PATTERN
             -l
@@ -79,19 +96,22 @@ class HelloWorld(cmdcopy.Cmd):
             -1
               list one file per line.  Avoid '\n' with -q or -b
         '''
-        try:
+
+        if not args:
+            listdir = os.listdir(os.getcwd())
+            for data in listdir:
+                print(data)
+        else:
+
             subprocess.check_call(['ls', args])
-        except:
-            l = os.listdir(os.getcwd())
-            for file in l:
-                print(file)
 
 
     def do_cat(self, file):
         '''
+        syntax 'cat [file_to_cat]'
+
         cat - print files on the standard output
         for extended help, specify --help
-        'cat [file_to_cat]'
 
         optional args
 
@@ -116,8 +136,8 @@ class HelloWorld(cmdcopy.Cmd):
 
     def do_nano(self, file):
         '''
+        syntax 'nano [file_to_edit_or_create]'
         nano - friendly text editor
-        'nano [file_to_edit_or_create]'
 
         if [file] is omitted, a temporary file will be created
 
@@ -126,7 +146,6 @@ class HelloWorld(cmdcopy.Cmd):
         if os.path.split(os.getcwd())[1] != os.path.split(file)[0] and file[0] == '/':
             print('not a directory')
             return
-
 
         elif not file:
             osCommandString = "nano " + "temp.txt"
@@ -138,12 +157,14 @@ class HelloWorld(cmdcopy.Cmd):
 
     def do_vi(self, file):
         '''
-        nano - a less friendly text editor
-        'nano [file_to_edit_or_create]'
+        syntax 'nano [file_to_edit_or_create]'
+        vi - a less friendly text editor
+
 
         if [file] is omitted, a temporary file will be created
 
         '''
+
         # hacker proofing
         if os.path.split(os.getcwd())[1] != os.path.split(file)[0] and file[0] == '/':
             print('not a directory')
@@ -152,13 +173,12 @@ class HelloWorld(cmdcopy.Cmd):
             osCommandString = "vi " + "temp.txt"
         else:
             osCommandString = "vi " + file
-
         os.system(osCommandString)
 
     def do_touch(self, file):
         '''
         touch - "touch" or create a new file
-        if file already exist, add a new t
+        if file already exist, add an updated timestamp
 
         '''
         try:

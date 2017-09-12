@@ -1,4 +1,3 @@
-import mainmodules.CommandPrompt
 """
 from mainmodules import ignorethis
 import pickle
@@ -12,4 +11,15 @@ cyphertext = ignorethis.encrypt(welcome,'resist')
 ignorethis.write_plaintext('articles/welcome.encrypted.txt', key='resist', file_to_create='welcome.blob')
 """
 import os
-print os.path.split('user/game/bla/x/y/z')
+
+def list_files(startpath):
+    for root, dirs, files in os.walk(startpath):
+        level = root.replace(startpath, '').count(os.sep)
+        indent = ' ' * 4 * (level)
+        print('{}{}/'.format(indent, os.path.basename(root)))
+        subindent = ' ' * 4 * (level + 1)
+        for f in files:
+            print('{}{}'.format(subindent, f))
+
+
+list_files('/Users/student/Desktop/dev/game/user')

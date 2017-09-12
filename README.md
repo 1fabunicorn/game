@@ -17,8 +17,11 @@ Why else would they make this illegal???
 ![cool old terminal gif](https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/DEC_VT100_terminal.jpg/512px-DEC_VT100_terminal.jpg)
 
 
-TODO:
+TODOS:
+
+    TODO: some sort of game persentages
+
 
     ~~implement CommandPrompt.py module to do basic unix stuff such as 'cd', 'mv', 'ls'.~~
 
-    ~~make the 'game directory' (the place the user ghas access to files)~~
+    ~~make the 'game directory' (the place the user has access to files)~~

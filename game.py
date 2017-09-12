@@ -1,7 +1,7 @@
 # file to run for game to run correctly!
 
 def main():
-    pass
+    from mainmodules import CommandPrompt
 
 
 if __name__ == '__main__':
