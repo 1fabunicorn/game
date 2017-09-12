@@ -8,22 +8,18 @@ import sys
 class HelloWorld(cmdcopy.Cmd):
     os.chdir('user')  # changes directory to 'user'
 
-    def do_greet(self, person):
-        '''
-        greet [person]
-        Greet the named person
-        '''
-        if person:
-            print('hi ' + person)
-        else:
-            print('hi')
+    progress = 0
+    stages = 6
+    num_to_words = {0: "start", 1: "first", 2: "second", 3: "third", 4: "forth", 5: "fifth" }
 
+    texts = {0: "texts/welcome.blob", 1: "a_start.blob", 2 : "two_bla"}
 
     def do_EOF(self, line):
         '''
         syntax 'EOF'
         '''
-        sys.exit('bye!')
+
+        sys.exit('\nbye!\n')
 
 
 #ported builtins
@@ -185,6 +181,19 @@ class HelloWorld(cmdcopy.Cmd):
             subprocess.call(['touch', file])
         except:
             print("file not specified")
+
+    # game checkers for user
+
+    def do_check(self, data):
+        '''
+        help the user out if confused.
+        ** work in progress **
+
+        '''
+
+        print('\nyou are at the %s stage. their are %s stages to go\n' % (self.num_to_words[self.progress], self.stages - self.progress))
+        print('\nrefer to "%s" for help on your task\n' % (self.texts[self.progress]) )
+
 
 
 if __name__ == 'mainmodules.CommandPrompt': # it works with this!!!

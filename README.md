@@ -12,16 +12,18 @@ Why else would they make this illegal???
 
 
 
-
-
 ![cool old terminal gif](https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/DEC_VT100_terminal.jpg/512px-DEC_VT100_terminal.jpg)
 
 
-TODOS:
+TODO:
 
-    TODO: some sort of game persentages
+    - [ ] check command (for user too check progress on game)
+            - [x] write function
+            - [x] tell user what file to refer too for help
+            - [ ] ...
 
+    - [x] some sort of game percentages
 
-    ~~implement CommandPrompt.py module to do basic unix stuff such as 'cd', 'mv', 'ls'.~~
+    - [x] implement CommandPrompt.py module to do basic unix stuff such as 'cd', 'mv', 'ls'.
 
-    ~~make the 'game directory' (the place the user has access to files)~~
+    - [x] make the 'game directory' (the place the user has access to files)
