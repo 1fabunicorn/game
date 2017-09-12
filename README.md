@@ -15,11 +15,11 @@ Why else would they make this illegal???
 ![cool old terminal gif](https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/DEC_VT100_terminal.jpg/512px-DEC_VT100_terminal.jpg)
 
 
-TODO:
+### TODO:
 
    1. [ ] check command (for user too check progress on game)
         
-        2.  [x] write function
+        2. [x] write function
         
         3. [x] tell user what file to refer too for help
         
@@ -30,3 +30,5 @@ TODO:
    2. [x] implement CommandPrompt.py module to do basic unix stuff such as 'cd', 'mv', 'ls'.
 
    3. [x] make the 'game directory' (the place the user has access to files)
+
+   4. [ ] Actually make storyline!

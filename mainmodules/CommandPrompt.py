@@ -182,7 +182,7 @@ class HelloWorld(cmdcopy.Cmd):
         except:
             print("file not specified")
 
-    # game checkers for user
+# Game Checkers for User
 
     def do_check(self, data):
         '''
@@ -192,7 +192,10 @@ class HelloWorld(cmdcopy.Cmd):
         '''
 
         print('\nyou are at the %s stage. their are %s stages to go\n' % (self.num_to_words[self.progress], self.stages - self.progress))
+
         print('\nrefer to "%s" for help on your task\n' % (self.texts[self.progress]) )
+
+
 
 
 
