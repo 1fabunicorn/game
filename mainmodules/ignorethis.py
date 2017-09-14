@@ -1,12 +1,23 @@
 """
-Nova Trauben
-vigenere cipher, as well as writing of cyphertext to file
+    vigenere cipher, as well as writing of cyphertext to file
+    Copyright (C) 2017,  Nova Trauben, noah.trauben@gmail.com
 
-Notes:
-It seems this function is relatively efficient, as timeit says,
-10000 loops, best of 3: 59.4 usec per loop
-returns a list of encrypted values, and plaintext values. Not sure where to go from their.
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
+
+
+
 import pickle
 
 

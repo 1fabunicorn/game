@@ -1,3 +1,23 @@
+"""
+    cmd module class
+    Copyright (C) 2017,  Nova Trauben, noah.trauben@gmail.com
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+"""
+
+
+
 import cmdcopy
 import subprocess
 import os
@@ -11,7 +31,6 @@ class HelloWorld(cmdcopy.Cmd):
     progress = 0
     stages = 6
     num_to_words = {0: "start", 1: "first", 2: "second", 3: "third", 4: "forth", 5: "fifth" }
-
     texts = {0: "texts/welcome.blob", 1: "a_start.blob", 2 : "two_bla"}
 
     def do_EOF(self, line):
@@ -23,7 +42,6 @@ class HelloWorld(cmdcopy.Cmd):
 
 
 #ported builtins
-
 
     def do_cd(self, directory): #change directory
         '''
