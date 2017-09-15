@@ -1,4 +1,4 @@
-from mainmodules import ignorethis, CommandPrompt
+from mainmodules import ignorethis
 import unittest
 import os
 
