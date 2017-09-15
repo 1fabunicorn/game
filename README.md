@@ -1,4 +1,4 @@
-# game
+# Resnix
 
 This is the starting out README for Nova's and Ben project
 
