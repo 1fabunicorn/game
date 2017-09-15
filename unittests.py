@@ -1,9 +1,11 @@
 from mainmodules import ignorethis
 import unittest
+import os
 
 
-class test_ignorethis(unittest.TestCase):
+class Test_Game(unittest.TestCase):
 
+    """ignorethis tests"""
     def test_encrypt(self):
         self.assertEqual(ignorethis.encrypt("hello this is a test...", 'password'), [216, 198, 223, 223, 230, 143, 230, 204, 217,
                                                                                      212, 147, 220, 234, 143, 211, 132, 228, 198,
@@ -18,7 +20,25 @@ class test_ignorethis(unittest.TestCase):
         self.assertEqual(ignorethis.encrypt("6-6-4%4", '5'), [107, 98, 107, 98, 105, 90, 105])
 
     def test_decrypt(self):
+
+        self.assertEqual(ignorethis.decrypt([107, 98, 107, 98, 105, 90, 105], '5'), "6-6-4%4")
+        self.assertRaises(ValueError, ignorethis.decrypt, [107, 98, 107, 98, 105, 90, 105], 't')
+        self.assertRaises(ValueError, ignorethis.decrypt, [0], 't')
+
+    def test_write_plaintext(self):
+        self.assertEqual(ignorethis.write_plaintext(cyphertext='encrypted_articles/welcome.encrypted.txt', file_to_create='unittest.blob', key='5'), None)
+        self.assertRaises(TypeError, ignorethis.write_plaintext, [0, 1, 2, 3, 4, 666], 'unittest.blob', 'RandomString')
+
+    """CommandPrompt tests"""
+    def test_tree(self):
         pass
+
+    def tearDown(self):
+        try:
+            os.remove("user/texts/unittest.blob")
+        except:
+            pass
+
 
 if __name__ == '__main__':
     unittest.main()

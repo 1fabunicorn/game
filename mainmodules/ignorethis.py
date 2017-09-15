@@ -16,8 +16,6 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
 
-
-
 import pickle
 
 
@@ -47,6 +45,9 @@ def decrypt(cyphertext, key):
     len_of_key = len(key)
 
     for keyindex, numbers in enumerate(cyphertext):
+        if numbers > 255 or numbers < 1:
+            raise ValueError
+
         plaintext.append(chr(numbers - ord(key[keyindex % len_of_key]) % 255))
     return "".join(plaintext)
 
@@ -54,17 +55,17 @@ def decrypt(cyphertext, key):
 def write_plaintext(cyphertext, key, file_to_create):
     """
 
-    :param cyphertext: file where cyphertext excists in a pickled form
+    :param cyphertext: file where cyphertext exists in a pickled form
     :param key: the decryption key
     :param file_to_create: file that is created. user/texts/ is appended to the front of the file
-    :return: if directory doesnt exsist, return, otherwise, create file
+    :return: if directory doesnt exists, return, otherwise, create file
     """
 
     try:
-        with open(cyphertext, 'rb') as file:
-            encrypted = pickle.load(file)
+        with open(cyphertext, 'rb') as f:
+            encrypted = pickle.load(f)
 
-        plaintext = decrypt(encrypted,key)
+        plaintext = decrypt(encrypted, key)
         file_to_create = 'user/texts/' + file_to_create
 
         with open(file_to_create, 'w') as f:
