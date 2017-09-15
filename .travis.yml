@@ -1,6 +1,7 @@
   language: python
   python:
     - 2.7
+    - 3.5
 
   script:
-    - python game.py
+    - python unittests.py
