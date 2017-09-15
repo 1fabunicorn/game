@@ -16,8 +16,6 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
 
-
-
 import cmdcopy
 import subprocess
 import os
@@ -30,8 +28,8 @@ class HelloWorld(cmdcopy.Cmd):
 
     progress = 0
     stages = 6
-    num_to_words = {0: "start", 1: "first", 2: "second", 3: "third", 4: "forth", 5: "fifth" }
-    texts = {0: "texts/welcome.blob", 1: "a_start.blob", 2 : "two_bla"}
+    num_to_words = {0: "start", 1: "first", 2: "second", 3: "third", 4: "forth", 5: "fifth"}
+    texts = {0: "texts/welcome.blob", 1: "a_start.blob", 2: "two_bla"}
 
     def do_EOF(self, line):
         '''
@@ -40,10 +38,9 @@ class HelloWorld(cmdcopy.Cmd):
 
         sys.exit('\nbye!\n')
 
+    # ported builtins
 
-#ported builtins
-
-    def do_cd(self, directory): #change directory
+    def do_cd(self, directory):  # change directory
         '''
         syntax 'cd [directory]'
         change to [directory]
@@ -118,7 +115,6 @@ class HelloWorld(cmdcopy.Cmd):
         else:
 
             subprocess.check_call(['ls', args])
-
 
     def do_cat(self, file):
         '''
@@ -200,7 +196,7 @@ class HelloWorld(cmdcopy.Cmd):
         except:
             print("file not specified")
 
-# Game Checkers for User
+        # Game Checkers for User
 
     def do_check(self, data):
         '''
@@ -209,13 +205,11 @@ class HelloWorld(cmdcopy.Cmd):
 
         '''
 
-        print('\nyou are at the %s stage. their are %s stages to go\n' % (self.num_to_words[self.progress], self.stages - self.progress))
+        print('\nyou are at the %s stage. their are %s stages to go\n' % (
+        self.num_to_words[self.progress], self.stages - self.progress))
 
-        print('\nrefer to "%s" for help on your task\n' % (self.texts[self.progress]) )
-
-
-
+        print('\nrefer to "%s" for help on your task\n' % (self.texts[self.progress]))
 
 
-if __name__ == 'mainmodules.CommandPrompt': # it works with this!!!
-    HelloWorld().cmdloop()
+if __name__ == 'mainmodules.CommandPrompt':  # it works with this!!!
+    HelloWorld()

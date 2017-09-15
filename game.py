@@ -16,9 +16,11 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
 
+from mainmodules import CommandPrompt
+
 
 def main():
-    from mainmodules import CommandPrompt
+    CommandPrompt.HelloWorld().cmdloop()
 
 
 if __name__ == '__main__':
