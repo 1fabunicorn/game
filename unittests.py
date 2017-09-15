@@ -1,4 +1,4 @@
-from mainmodules import ignorethis
+from mainmodules import ignorethis, CommandPrompt
 import unittest
 import os
 
@@ -29,9 +29,10 @@ class Test_Game(unittest.TestCase):
         self.assertEqual(ignorethis.write_plaintext(cyphertext='encrypted_articles/welcome.encrypted.txt', file_to_create='unittest.blob', key='5'), None)
         self.assertRaises(TypeError, ignorethis.write_plaintext, [0, 1, 2, 3, 4, 666], 'unittest.blob', 'RandomString')
 
-    """CommandPrompt tests"""
-    def test_tree(self):
-        pass
+    """
+    CommandPrompt tests:  Need to find way to do this correctly. whenever class is instanceated, command line starts...
+    tree function seems trivial, no seemingly good way to test it
+    """
 
     def tearDown(self):
         try:
