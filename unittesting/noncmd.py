@@ -1,11 +1,14 @@
-from mainmodules import ignorethis, CommandPrompt
-import unittest
+import sys
 import os
+sys.path.insert(0, '/Users/student/Desktop/dev/game')
+from mainmodules import ignorethis
+import unittest
 
 
 class Test_Game(unittest.TestCase):
 
     """ignorethis tests"""
+
     def test_encrypt(self):
         self.assertEqual(ignorethis.encrypt("hello this is a test...", 'password'), [216, 198, 223, 223, 230, 143, 230, 204, 217,
                                                                                      212, 147, 220, 234, 143, 211, 132, 228, 198,
@@ -28,41 +31,6 @@ class Test_Game(unittest.TestCase):
     def test_write_plaintext(self):
         self.assertEqual(ignorethis.write_plaintext(cyphertext='encrypted_articles/welcome.encrypted.txt', file_to_create='unittest.blob', key='5'), None)
         self.assertRaises(TypeError, ignorethis.write_plaintext, [0, 1, 2, 3, 4, 666], 'unittest.blob', 'RandomString')
-
-    """
-    CommandPrompt tests: 
-    tree function seems trivial, no seemingly good way to test it
-    """
-
-    def test_EOF(self):
-
-        self.assertRaises(SystemExit, CommandPrompt.HelloWorld().do_EOF,'EOF')
-        self.assertRaises(SystemExit, CommandPrompt.HelloWorld().do_EOF, None)
-
-    def test_cd(self):
-        self.assertEqual(CommandPrompt.HelloWorld().do_cd('foo'), '\nnot a directory')
-
-
-    def test_pwd(self):
-        pass
-
-    def test_ls(self):
-        pass
-
-    def test_cat(self):
-        pass
-
-    def test_check(self):
-        pass
-
-    def test_touch(self):
-        pass
-
-
-
-
-
-
 
     def tearDown(self):
         try:

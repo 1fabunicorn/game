@@ -24,7 +24,7 @@ class Cmd:
     identchars = IDENTCHARS
     ruler = '='
     lastcmd = ''
-    intro = None
+    intro = 'welcome to resnix'
     doc_leader = ""
     doc_header = "Documented commands (type help <topic>):"
     misc_header = "Miscellaneous help topics:"
@@ -83,7 +83,7 @@ class Cmd:
                 else:
                     if self.use_rawinput:
                         try:
-                            line = raw_input(os.getcwd() + '$ ')
+                            line = raw_input(os.getcwd() + '$ ') # edited
                         except EOFError:
                             line = 'EOF'
                     else:

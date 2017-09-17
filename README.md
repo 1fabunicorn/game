@@ -27,8 +27,8 @@ Why else would they make this illegal???
 
    1. [x] some sort of game percentages
 
-   2. [x] implement CommandPrompt.py module to do basic unix stuff such as 'cd', 'mv', 'ls'.
+   2. [ ] Actually make storyline!
 
-   3. [x] make the 'game directory' (the place the user has access to files)
+   3. [ ] line 3 of noncmd. fix this for portablity
 
-   4. [ ] Actually make storyline!
+
