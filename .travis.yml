@@ -13,6 +13,7 @@
   - "nightly"
   install:
   - pip install pytest
+  - sudo apt-get install python-logilab-common
   script:
     - python unittests.py
     - pytest -q unittests.py
