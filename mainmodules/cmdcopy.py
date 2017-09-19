@@ -196,7 +196,7 @@ class Cmd:
         returns.
 
         """
-        self.stdout.write('*** Unknown syntax: %s\n'%line)
+        self.stdout.write('bash: %s command not found\n'%line)
 
     def completedefault(self, *ignored):
         """Method called to complete an input line when no command-specific

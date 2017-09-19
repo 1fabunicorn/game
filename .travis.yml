@@ -11,5 +11,8 @@
   - "3.6-dev" # 3.6 development branch
   - "3.7-dev" # 3.7 development branch
   - "nightly"
+  install:
+  - pip install pytest
   script:
     - python unittests.py
+    - pytest -q unittesting/cmdtesting.py

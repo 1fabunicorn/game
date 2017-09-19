@@ -1,30 +1,52 @@
 import pytest
-class testing():
-    """
-    CommandPrompt tests:
-    tree function seems trivial, no seemingly good way to test it
-    """
+import sys
+sys.path.insert(0, '/Users/student/Desktop/dev/game')
+from mainmodules import CommandPrompt
+import random, string
 
-    def test_EOF(self):
+"""
+CommandPrompt tests:
+tree function seems trivial, no seemingly good way to test it
+"""
+def randomstr(n):
 
-        self.assertRaises(SystemExit, CommandPrompt.HelloWorld().do_EOF,'EOF')
-        self.assertRaises(SystemExit, CommandPrompt.HelloWorld().do_EOF, None)
-
-    def test_cd(self):
-        self.assertEqual(CommandPrompt.HelloWorld().do_cd('foo'), '\nnot a directory')
+    letters = string.ascii_lowercase
+    return ''.join(random.choice(letters) for i in range(n))
 
 
-    def test_pwd(self):
-        pass
+def test_cd(capsys):
 
-    def test_ls(self):
-        pass
+    CommandPrompt.HelloWorld().do_cd('foo')
+    out, err = capsys.readouterr()
+    assert out == '\nnot a directory\n'
+    assert err == ''
 
-    def test_cat(self):
-        pass
+    CommandPrompt.HelloWorld().do_cd('testdir')
+    out, err = capsys.readouterr()
+    assert out == ''
+    assert err == ''
 
-    def test_check(self):
-        pass
+    CommandPrompt.HelloWorld().do_cd(randomstr(10))
+    out, err = capsys.readouterr()
+    assert out == '\nnot a directory\n'
+    assert err == ''
 
-    def test_touch(self):
-        pass
+def test_EOF():
+    pass
+
+
+def test_pwd():
+    pass
+
+def test_ls():
+    pass
+
+def test_cat():
+    pass
+
+def test_check():
+    pass
+
+def test_touch():
+    pass
+

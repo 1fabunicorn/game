@@ -24,7 +24,9 @@ import sys
 
 
 class HelloWorld(cmdcopy.Cmd):
-    os.chdir('user')  # changes directory to 'user'
+
+    if not os.path.split(os.getcwd())[1] == 'unittesting':
+        os.chdir('user')  # changes directory to 'user'
 
     progress = 0
     stages = 6
@@ -48,29 +50,30 @@ class HelloWorld(cmdcopy.Cmd):
 
         args = directory.split(' ')
         # next 6 lines are cheater proof biz
+
         if args[0] == 'game':
-            print('not a directory')
+            self.stdout.write('\nnot a directory\n')
             return
-        if os.path.split(os.getcwd())[1] == 'user' and args[0] == '..':
-            print('not a directory')
+        elif os.path.split(os.getcwd())[1] == 'user' and args[0] == '..':
+            self.stdout.write('\nnot a directory\n')
             return
 
         try:
             os.chdir(args[0])
         except OSError:
-            print('not a directory')
+            self.stdout.write('\nnot a directory\n')
 
     def do_pwd(self, nothing):
         '''
         syntax 'pwd'
-        print working directory
+        self.stdout.write working directory
         '''
         subprocess.check_call('pwd')
 
     def do_tree(self, nothing):
         '''
         syntax 'tree'
-        prints the directory structure as a tree
+        self.stdout.writes the directory structure as a tree
 
         '''
         # credit to dhobbs
@@ -80,16 +83,16 @@ class HelloWorld(cmdcopy.Cmd):
         for root, dirs, files in os.walk(startpath):
             level = root.replace(startpath, '').count(os.sep)
             indent = ' ' * 4 * (level)
-            print('{}{}/'.format(indent, os.path.basename(root)))
+            self.stdout.write('{}{}/'.format(indent, os.path.basename(root)))
             subindent = ' ' * 4 * (level + 1)
             for f in files:
-                print('{}{}'.format(subindent, f))
+                self.stdout.write('{}{}'.format(subindent, f))
 
     def do_ls(self, args):
         '''
         syntax 'ls [optional args]'
         list files and directory's.
-        If no args are specified, ls will print in alphabetical order
+        If no args are specified, ls will self.stdout.write in alphabetical order
         for extended help, specify --help
 
         optional args
@@ -97,9 +100,9 @@ class HelloWorld(cmdcopy.Cmd):
             -a  --all
               do not ignore entries starting with .
             -b  --escape
-              print C-style escapes for nongraphic characters
+              self.stdout.write C-style escapes for nongraphic characters
             -h  --human-readable
-              with -l and/or -s, print human readable sizes (e.g., 1K, 234M, 2G)
+              with -l and/or -s, self.stdout.write human readable sizes (e.g., 1K, 234M, 2G)
             -I  --ignore=PATTERN
               do not list implied entries matching shell PATTERN
             -l
@@ -111,7 +114,7 @@ class HelloWorld(cmdcopy.Cmd):
         if not args:
             listdir = os.listdir(os.getcwd())
             for data in listdir:
-                print(data)
+                self.stdout.write(data)
         else:
 
             subprocess.check_call(['ls', args])
@@ -120,7 +123,7 @@ class HelloWorld(cmdcopy.Cmd):
         '''
         syntax 'cat [file_to_cat]'
 
-        cat - print files on the standard output
+        cat - self.stdout.write files on the standard output
         for extended help, specify --help
 
         optional args
@@ -154,7 +157,7 @@ class HelloWorld(cmdcopy.Cmd):
         '''
         # hacker proofing
         if os.path.split(os.getcwd())[1] != os.path.split(file)[0] and file[0] == '/':
-            print('not a directory')
+            self.stdout.write('not a directory')
             return
 
         elif not file:
@@ -177,7 +180,7 @@ class HelloWorld(cmdcopy.Cmd):
 
         # hacker proofing
         if os.path.split(os.getcwd())[1] != os.path.split(file)[0] and file[0] == '/':
-            print('not a directory')
+            self.stdout.write('not a directory')
             return
         elif not file:
             osCommandString = "vi " + "temp.txt"
@@ -194,7 +197,7 @@ class HelloWorld(cmdcopy.Cmd):
         try:
             subprocess.call(['touch', file])
         except:
-            print("file not specified")
+            self.stdout.write("file not specified")
 
         # Game Checkers for User
 
@@ -205,10 +208,10 @@ class HelloWorld(cmdcopy.Cmd):
 
         '''
 
-        print('\nyou are at the %s stage. their are %s stages to go\n' % (
+        self.stdout.write('\nyou are at the %s stage. their are %s stages to go\n' % (
         self.num_to_words[self.progress], self.stages - self.progress))
 
-        print('\nrefer to "%s" for help on your task\n' % (self.texts[self.progress]))
+        self.stdout.write('\nrefer to "%s" for help on your task\n' % (self.texts[self.progress]))
 
 
 if __name__ == 'mainmodules.CommandPrompt':  # it works with this!!!
