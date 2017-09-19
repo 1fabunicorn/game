@@ -1,4 +1,4 @@
-from mainmodules import *
+from mainmodules import ignorethis, CommandPrompt
 import unittest
 import os
 import random, string
