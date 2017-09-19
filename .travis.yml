@@ -14,5 +14,5 @@
   install:
   - pip install pytest
   script:
-    - python unittests.py
+    # - python unittests.py
     - pytest -q unittesting/cmdtesting.py
