@@ -1,8 +1,11 @@
 import pytest
 import sys
 import os
-sys.path.insert(0, os.path.split(os.getcwd())[0] + '/resnix')
-from mainmodules import CommandPrompt
+try:
+    sys.path.insert(0, os.path.split(os.getcwd())[0])
+    from mainmodules import CommandPrompt
+except:
+    from . import *
 import random, string
 """
 CommandPrompt tests:

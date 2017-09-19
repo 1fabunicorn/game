@@ -35,4 +35,6 @@ Temporary Items
 # personal stuff
 /shootfile
 /test
-/unittesting/.cache/
+
+# pytest
+.cache/

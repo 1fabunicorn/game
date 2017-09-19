@@ -3,6 +3,7 @@
 import os
 import string
 
+
 __all__ = ["Cmd"]
 
 PROMPT = '(Cmd) '
