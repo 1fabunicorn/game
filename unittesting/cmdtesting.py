@@ -1,6 +1,8 @@
 import pytest
 import sys
-sys.path.insert(0, '/Users/student/Desktop/dev/game')
+import os
+
+sys.path.insert(0, os.path.split(os.getcwd())[0])
 from mainmodules import CommandPrompt
 import random, string
 
