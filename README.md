@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/1fabunicorn/resnix.svg?branch=master)](https://travis-ci.org/1fabunicorn/resnix)
+
 # Resnix
 
 This is the starting out README for Nova's and Ben project
