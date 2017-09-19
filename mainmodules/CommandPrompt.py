@@ -17,8 +17,7 @@
 """
 import sys
 import os
-sys.path.insert(0, os.path.split(os.getcwd())[0])
-import cmdcopy
+from mainmodules import cmdcopy
 import subprocess
 from shlex import split
 

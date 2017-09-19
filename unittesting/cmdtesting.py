@@ -1,11 +1,12 @@
 import pytest
 import sys
 import os
-try:
-    sys.path.insert(0, os.path.split(os.getcwd())[0])
-    from mainmodules import CommandPrompt
-except Exception:
-    from . import *
+
+
+sys.path.insert(0, os.path.split(os.getcwd())[0])
+# from mainmodules import
+
+
 import random, string
 """
 CommandPrompt tests:

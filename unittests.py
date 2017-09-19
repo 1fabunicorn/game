@@ -1,6 +1,7 @@
-from mainmodules import ignorethis, CommandPrompt
+from mainmodules import *
 import unittest
 import os
+import random, string
 
 
 class Test_Game(unittest.TestCase):
@@ -26,7 +27,7 @@ class Test_Game(unittest.TestCase):
         self.assertRaises(ValueError, ignorethis.decrypt, [0], 't')
 
     def test_write_plaintext(self):
-        self.assertEqual(ignorethis.write_plaintext(cyphertext='encrypted_articles/welcome.encrypted.txt', file_to_create='unittest.blob', key='5'), None)
+        # self.assertEqual(ignorethis.write_plaintext(cyphertext='encrypted_articles/welcome.encrypted.txt', file_to_create='unittest.blob', key='5'), None)
         self.assertRaises(TypeError, ignorethis.write_plaintext, [0, 1, 2, 3, 4, 666], 'unittest.blob', 'RandomString')
 
     """
@@ -34,41 +35,52 @@ class Test_Game(unittest.TestCase):
     tree function seems trivial, no seemingly good way to test it
     """
 
-    def test_EOF(self):
 
-        self.assertRaises(SystemExit, CommandPrompt.HelloWorld().do_EOF,'EOF')
-        self.assertRaises(SystemExit, CommandPrompt.HelloWorld().do_EOF, None)
+"""
+    CommandPrompt tests:
+    tree function seems trivial, no seemingly good way to test it
+    """
+def randomstr( n):
 
-    def test_cd(self):
-        self.assertEqual(CommandPrompt.HelloWorld().do_cd('foo'), '\nnot a directory')
+    letters = string.ascii_lowercase
+    return ''.join(random.choice(letters) for i in range(n))
+
+def test_cd(capsys):
+
+    CommandPrompt.HelloWorld().do_cd('foo')
+    out, err = capsys.readouterr()
+    assert out == '\nnot a directory\n'
+    assert err == ''
+
+    CommandPrompt.HelloWorld().do_cd('texts')
+    out, err = capsys.readouterr()
+    assert out == ''
+    assert err == ''
+
+    CommandPrompt.HelloWorld().do_cd(randomstr(10))
+    out, err = capsys.readouterr()
+    assert out == '\nnot a directory\n'
+    assert err == ''
+
+def test_EOF():
+    pass
+
+def test_pwd():
+    pass
+
+def test_ls():
+    pass
+
+def test_cat():
+    pass
+
+def test_check():
+    pass
+
+def test_touch():
+    pass
 
 
-    def test_pwd(self):
-        pass
-
-    def test_ls(self):
-        pass
-
-    def test_cat(self):
-        pass
-
-    def test_check(self):
-        pass
-
-    def test_touch(self):
-        pass
-
-
-
-
-
-
-
-    def tearDown(self):
-        try:
-            os.remove("user/texts/unittest.blob")
-        except:
-            pass
 
 
 if __name__ == '__main__':
