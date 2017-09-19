@@ -1,15 +1,15 @@
 import pytest
 import sys
 import os
-
-sys.path.insert(0, os.path.split(os.getcwd())[0])
+sys.path.insert(0, os.path.split(os.getcwd())[0] + '/resnix')
 from mainmodules import CommandPrompt
 import random, string
-
 """
 CommandPrompt tests:
 tree function seems trivial, no seemingly good way to test it
 """
+
+
 def randomstr(n):
 
     letters = string.ascii_lowercase
@@ -23,7 +23,7 @@ def test_cd(capsys):
     assert out == '\nnot a directory\n'
     assert err == ''
 
-    CommandPrompt.HelloWorld().do_cd('testdir')
+    CommandPrompt.HelloWorld().do_cd('texts')
     out, err = capsys.readouterr()
     assert out == ''
     assert err == ''
