@@ -4,7 +4,7 @@ import os
 try:
     sys.path.insert(0, os.path.split(os.getcwd())[0])
     from mainmodules import CommandPrompt
-except:
+except Exception:
     from . import *
 import random, string
 """
