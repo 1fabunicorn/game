@@ -136,8 +136,8 @@ class HelloWorld(cmdcopy.Cmd):
         '''
 
         try:
-            subprocess.check_call(['cat', file])
-        except:
+            subprocess.call(['cat', file])
+        except Exception:
             pass
 
     def do_clear(self, nothing):

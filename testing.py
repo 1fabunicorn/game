@@ -1,2 +1,2 @@
-import os
-print(os.path.split(os.getcwd())[0])
+import subprocess
+print subprocess.check_output(['cat', 'user/texts/welcome.blob'])

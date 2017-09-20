@@ -1,4 +1,5 @@
-from mainmodules import ignorethis, CommandPrompt
+from mainmodules import ignorethis
+from mainmodules import CommandPrompt
 import unittest
 import os
 import random, string
@@ -41,7 +42,6 @@ def randomstr( n):
 
     letters = string.ascii_lowercase
     return ''.join(random.choice(letters) for i in range(n))
-
 def test_cd(capsys):
 
     CommandPrompt.HelloWorld().do_cd('foo')
@@ -59,20 +59,27 @@ def test_cd(capsys):
     assert out == '\nnot a directory\n'
     assert err == ''
 
+
 def test_ls(capsys):
     CommandPrompt.HelloWorld().do_ls('')
     out, err = capsys.readouterr()
     assert out == 'welcome.blob\n' # will do for now. should cd back to directory
     assert err == ''
 
-def test_cat():
-    pass
 
 def test_check():
     pass
+    # not much needs to be implemented here yet.
 
 def test_touch():
-    pass
+    CommandPrompt.HelloWorld().do_touch('unittesting.test')
+    assert os.path.isfile('unittesting.test')
+    subprocess.call(['rm', 'unittesting.test'])
+
+    rstring = randomstr(35)
+    CommandPrompt.HelloWorld().do_touch(rstring)
+    assert os.path.isfile(rstring)
+    subprocess.call(['rm', rstring])
 
 
 if __name__ == '__main__':
