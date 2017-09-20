@@ -2,6 +2,7 @@ from mainmodules import ignorethis, CommandPrompt
 import unittest
 import os
 import random, string
+import subprocess
 
 
 class Test_Game(unittest.TestCase):
@@ -30,10 +31,6 @@ class Test_Game(unittest.TestCase):
         # self.assertEqual(ignorethis.write_plaintext(cyphertext='encrypted_articles/welcome.encrypted.txt', file_to_create='unittest.blob', key='5'), None)
         self.assertRaises(TypeError, ignorethis.write_plaintext, [0, 1, 2, 3, 4, 666], 'unittest.blob', 'RandomString')
 
-    """
-    CommandPrompt tests: 
-    tree function seems trivial, no seemingly good way to test it
-    """
 
 
 """
@@ -62,14 +59,11 @@ def test_cd(capsys):
     assert out == '\nnot a directory\n'
     assert err == ''
 
-def test_EOF():
-    pass
-
-def test_pwd():
-    pass
-
-def test_ls():
-    pass
+def test_ls(capsys):
+    CommandPrompt.HelloWorld().do_ls('')
+    out, err = capsys.readouterr()
+    assert out == 'welcome.blob\n' # will do for now. should cd back to directory
+    assert err == ''
 
 def test_cat():
     pass
@@ -79,8 +73,6 @@ def test_check():
 
 def test_touch():
     pass
-
-
 
 
 if __name__ == '__main__':

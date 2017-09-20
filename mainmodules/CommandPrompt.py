@@ -72,7 +72,7 @@ class HelloWorld(cmdcopy.Cmd):
     def do_tree(self, nothing):
         '''
         syntax 'tree'
-        self.stdout.writes the directory structure as a tree
+        print the directory structure as a tree
 
         '''
         # credit to dhobbs
@@ -114,6 +114,8 @@ class HelloWorld(cmdcopy.Cmd):
             listdir = os.listdir(os.getcwd())
             for data in listdir:
                 self.stdout.write(data)
+            self.stdout.write('\n')
+
         else:
 
             subprocess.check_call(['ls', args])
