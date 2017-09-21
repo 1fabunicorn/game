@@ -72,3 +72,8 @@ def write_plaintext(cyphertext, key, file_to_create):
             f.write(plaintext)
     except IOError:
         return "directory doesn't exist"
+
+
+def progress(data):
+    with open('gamedata', 'w') as f:
+        f.write(data)

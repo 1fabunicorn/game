@@ -17,10 +17,17 @@
 """
 import sys
 import os
-from mainmodules import cmdcopy
+from mainmodules import cmdcopy, DotDotDot
 import subprocess
 from shlex import split
+import time
 
+
+def dot(loops, dots, timeper):
+    for i in range(loops):
+        print(dots * i)
+        sys.stdout.write("\033[F")  # Cursor up one line
+        time.sleep(timeper)
 
 class HelloWorld(cmdcopy.Cmd):
 
@@ -117,7 +124,7 @@ class HelloWorld(cmdcopy.Cmd):
             listdir = os.listdir(os.getcwd())
             for data in listdir:
                 self.stdout.write(data)
-            self.stdout.write('\n')
+                self.stdout.write('\n')
 
         else:
 
@@ -203,7 +210,25 @@ class HelloWorld(cmdcopy.Cmd):
         except:
             self.stdout.write("file not specified")
 
-        # Game Checkers for User
+        # Game related stuff
+
+    def do_mail(self, data): # mail function
+        data = data.split()
+        try:
+            if data[0] == 'anon@resnix.com':
+                self.progress += .1
+                self.stdout.write('welcome to the club')
+                dot(20, '.', .2)
+                self.stdout.write('receiving data')
+                dot(20, '.', .2)
+                self.stdout.write('Quick! Change line two of etc/ftp.comf to true')
+
+            text = data[1]
+            self.stdout.write("\n")
+
+        except IndexError:
+            self.stdout.write('Error: nothing written in body\n')
+
 
     def do_check(self, data):
         '''
