@@ -81,11 +81,14 @@ class HelloWorld(cmdcopy.Cmd):
         startpath = os.getcwd()
         for root, dirs, files in os.walk(startpath):
             level = root.replace(startpath, '').count(os.sep)
-            indent = ' ' * 4 * (level)
+            indent = ' ' * 2 * (level)
             self.stdout.write('{}{}/'.format(indent, os.path.basename(root)))
-            subindent = ' ' * 4 * (level + 1)
+            self.stdout.write('\n')
+            subindent = ' ' * 2 * (level + 1)
             for f in files:
                 self.stdout.write('{}{}'.format(subindent, f))
+                self.stdout.write('\n')
+
 
     def do_ls(self, args):
         '''

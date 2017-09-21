@@ -2,6 +2,7 @@
 
 import os
 import string
+from mainmodules import TermUtil
 
 
 __all__ = ["Cmd"]
@@ -25,7 +26,7 @@ class Cmd:
     identchars = IDENTCHARS
     ruler = '='
     lastcmd = ''
-    intro = 'welcome to resnix'
+    intro = ''
     doc_leader = ""
     doc_header = "Documented commands (type help <topic>):"
     misc_header = "Miscellaneous help topics:"
@@ -56,13 +57,33 @@ class Cmd:
         self.cmdqueue = []
         self.completekey = completekey
 
+    def border(self):
+        x_axis, y_axis = TermUtil.get_terminal_size()[0], TermUtil.get_terminal_size()[1],
+        print('\n\n\n\n')
+        for y in range(1, 6):
+            if y == 1:  # if on the first line
+                print('#' * int(x_axis - x_axis/5))
+
+            if y == 2:
+                print("# Welcome to Resnix" + (" " * int(x_axis - x_axis/5 - 20)) + "#" )
+
+            if y == 3:
+                print("# Be strong" + (" " * int(x_axis - x_axis/5 - 12)) + "#" ) # add DotDotDot
+
+            if y == 5 :  # and... if on the last line
+                print('#' * int(x_axis - x_axis/5))
+
+            else:  # prints side hashes if not the first or last
+                print('#' + (" " * int(x_axis - x_axis/5 - 2))  + "#")
+
+
     def cmdloop(self, intro=None):
         """Repeatedly issue a prompt, accept input, parse an initial prefix
         off the received input, and dispatch to action methods, passing them
         the remainder of the line as argument.
 
         """
-
+        self.border()
         self.preloop()
         if self.use_rawinput and self.completekey:
             try:
@@ -84,7 +105,10 @@ class Cmd:
                 else:
                     if self.use_rawinput:
                         try:
-                            line = raw_input(os.getcwd() + '$ ') # edited
+                            try:
+                                line = raw_input(os.path.split(os.getcwd())[1] + '$ ') # edited
+                            except NameError:
+                                line = input(os.path.split(os.getcwd())[1] + '$ ')
                         except EOFError:
                             line = 'EOF'
                     else:
