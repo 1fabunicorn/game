@@ -3,6 +3,7 @@
 import os
 import string
 from mainmodules import TermUtil
+import subprocess
 
 
 __all__ = ["Cmd"]
@@ -83,6 +84,7 @@ class Cmd:
         the remainder of the line as argument.
 
         """
+        subprocess.call(['clear'])
         self.border()
         self.preloop()
         if self.use_rawinput and self.completekey:

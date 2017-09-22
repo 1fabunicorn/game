@@ -75,5 +75,5 @@ def write_plaintext(cyphertext, key, file_to_create):
 
 
 def progress(data):
-    with open('gamedata', 'w') as f:
+    with open('gamedata', 'rw') as f:
         f.write(data)

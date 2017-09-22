@@ -17,7 +17,7 @@
 """
 import sys
 import os
-from mainmodules import cmdcopy, DotDotDot
+from mainmodules import cmdcopy
 import subprocess
 from shlex import split
 import time
@@ -34,7 +34,7 @@ class HelloWorld(cmdcopy.Cmd):
     if not os.path.split(os.getcwd())[1] == 'unittesting':
         os.chdir('user')  # changes directory to 'user'
 
-    progress = 0
+    progress = .1
     stages = 6
     num_to_words = {0: "start", 1: "first", 2: "second", 3: "third", 4: "forth", 5: "fifth"}
     texts = {0: "texts/welcome.blob", 1: "a_start.blob", 2: "two_bla"}
@@ -212,7 +212,7 @@ class HelloWorld(cmdcopy.Cmd):
 
         # Game related stuff
 
-    def do_mail(self, data): # mail function
+    def do_mail(self, data):  # mail function
         data = data.split()
         try:
             if data[0] == 'anon@resnix.com':
@@ -220,7 +220,7 @@ class HelloWorld(cmdcopy.Cmd):
                 self.stdout.write('welcome to the club')
                 dot(20, '.', .2)
                 self.stdout.write('receiving data')
-                dot(20, '.', .2)
+                dot(14, '.', .2)
                 self.stdout.write('Quick! Change line two of etc/ftp.comf to true')
 
             text = data[1]
@@ -236,12 +236,25 @@ class HelloWorld(cmdcopy.Cmd):
         ** work in progress **
 
         '''
+        if self.progress == .1:
+            with open("etc/ftp.comf", "r") as f:
+                line = f.readlines()
+                if line[1] == 'anon_access = true\n' or line[1] == 'anon_access= true\n' or line[1] == \
+                    'anon_access =true\n' or line[1] == 'anon_access=true\n':
+                    self.progress = 1
+                    self.stdout.write('nice job. Wait for your next task\n')
+                else:
+                    self.stdout.write('something is wrong....\n')
 
+
+
+
+        """
         self.stdout.write('\nyou are at the %s stage. their are %s stages to go\n' % (
         self.num_to_words[self.progress], self.stages - self.progress))
 
         self.stdout.write('\nrefer to "%s" for help on your task\n' % (self.texts[self.progress]))
-
+        """
 
 if __name__ == 'mainmodules.CommandPrompt':  # it works with this!!!
     HelloWorld()
