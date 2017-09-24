@@ -36,10 +36,10 @@ class HelloWorld(cmdcopy.Cmd):
     if not os.path.split(os.getcwd())[1] == 'unittesting':
         os.chdir('user')  # changes directory to 'user'
 
-    progress = 0
+    progress = -1
     stages = 6
-    num_to_words = {0: "start", 1: "choices", 2: "second", 3: "third", 4: "forth", 5: "fifth"}
-    texts = {0: "texts/welcome.blob", 1: "a_start.blob", 2: "two_bla"}
+    num_to_words = {-1: 'welcome.blob', 0: "start", 1: "choices", 2: "second", 3: "third", 4: "forth", 5: "fifth"}
+    texts = {-1: "texts/welcome.blob", 0: "a_start.blob", 1: "two_bla"}
     files = {1:'encrypted_texts/choices', 2:'', 3:'', 4:'', 5:''}
     decrypt = False
 
@@ -220,6 +220,10 @@ class HelloWorld(cmdcopy.Cmd):
 
     # Game related stuff
 
+    def do_progress(self, none):
+        print(self.progress)
+
+
     def do_unlock(self, key):
         if self.decrypt:
             ignorethis.write_plaintext(cyphertext=self.files[self.progress], file_to_create=self.files[self.progress], key=key)
@@ -248,10 +252,9 @@ class HelloWorld(cmdcopy.Cmd):
 
         '''
 
-        tasks.task(self.progress)
+        self.progress = tasks.task(self.progress)
         self.stdout.write('\nyou are at the %s stage.' % (self.num_to_words[self.progress]))
         self.stdout.write('\nrefer to "%s" for help on your task\n' % (self.texts[self.progress]))
-
 
 if __name__ == 'mainmodules.CommandPrompt':  # it works with this!!!
     HelloWorld()

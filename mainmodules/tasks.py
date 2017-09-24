@@ -18,6 +18,20 @@
 
 
 def task(progress):
+
+    if progress == -1:
+        with open("../user/etc/ftp.comf", "r") as f:
+            line = f.readlines()
+            if line[2] == 'online = true' or line[2] == 'online= true' or line[2] == 'online =true' or line[2] == 'online=true':
+                print('Nice job on your first task!\n  Unlock your next task with "unlock resist"')
+                progress = 0
+                return progress
+            else:
+                print('something is wrong....\n')
+                progress = -1
+                return progress
+
+
     if progress == 0:
         with open("../user/etc/ftp.comf", "r") as f:
             line = f.readlines()
@@ -29,3 +43,5 @@ def task(progress):
                 return progress
             else:
                 print('something is wrong....\n')
+                progress = 0
+                return progress

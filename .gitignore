@@ -35,7 +35,7 @@ Temporary Items
 # personal stuff
 /shootfile
 /test
-testing.py
+/testing.py
 
 # pytest
 .cache

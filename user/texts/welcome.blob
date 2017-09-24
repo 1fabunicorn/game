@@ -1,8 +1,5 @@
 Welcome. We don't have much time. I hear you love the open source. Lets keep it this way.
 three hours ago, the linux kernel was made illegal. We, the opposition feel they have something they don't want us to know.
-Please, first host linux kernel 0.1 on your public ftp server. We have a script to make it safe, not to compromise your identity
-
-
-(sudo script here)
+Please, first host linux 1.0 on your public ftp server. Change line 3 to 'true' to fire up your FTP server
 
 god speed
