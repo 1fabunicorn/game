@@ -17,7 +17,7 @@
 """
 import sys
 import os
-from mainmodules import cmdcopy, ignorethis
+from mainmodules import cmdcopy, ignorethis, tasks
 import subprocess
 # from shlex import split
 import time
@@ -247,17 +247,8 @@ class HelloWorld(cmdcopy.Cmd):
         ** work in progress **
 
         '''
-        if self.progress == 0:
-            with open("etc/ftp.comf", "r") as f:
-                line = f.readlines()
-                if line[1] == 'anon_access = true\n' or line[1] == 'anon_access= true\n' or line[1] == \
-                    'anon_access =true\n' or line[1] == 'anon_access=true\n':
-                    self.progress = 1
-                    self.stdout.write('nice job. what is the modern RFC for the FTP protocol?\n try it out with the "unlock [key]"')
-                else:
-                    self.stdout.write('something is wrong....\n')
 
-
+        tasks.task(self.progress)
         self.stdout.write('\nyou are at the %s stage.' % (self.num_to_words[self.progress]))
         self.stdout.write('\nrefer to "%s" for help on your task\n' % (self.texts[self.progress]))
 
