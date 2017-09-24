@@ -17,9 +17,9 @@
 """
 import sys
 import os
-from mainmodules import cmdcopy
+from mainmodules import cmdcopy, ignorethis
 import subprocess
-from shlex import split
+# from shlex import split
 import time
 
 
@@ -29,21 +29,30 @@ def dot(loops, dots, timeper):
         sys.stdout.write("\033[F")  # Cursor up one line
         time.sleep(timeper)
 
+
+
 class HelloWorld(cmdcopy.Cmd):
 
     if not os.path.split(os.getcwd())[1] == 'unittesting':
         os.chdir('user')  # changes directory to 'user'
 
-    progress = .1
+    progress = 0
     stages = 6
-    num_to_words = {0: "start", 1: "first", 2: "second", 3: "third", 4: "forth", 5: "fifth"}
+    num_to_words = {0: "start", 1: "choices", 2: "second", 3: "third", 4: "forth", 5: "fifth"}
     texts = {0: "texts/welcome.blob", 1: "a_start.blob", 2: "two_bla"}
+    files = {1:'encrypted_texts/choices', 2:'', 3:'', 4:'', 5:''}
+    decrypt = False
+
+    try:
+        ignorethis.read_progress(progress)
+    except Exception:
+        pass
 
     def do_EOF(self, line):
         '''
         syntax 'EOF'
         '''
-
+        ignorethis.write_progress(str(self.progress))
         sys.exit('\nbye!\n')
 
     # ported builtins
@@ -95,7 +104,6 @@ class HelloWorld(cmdcopy.Cmd):
             for f in files:
                 self.stdout.write('{}{}'.format(subindent, f))
                 self.stdout.write('\n')
-
 
     def do_ls(self, args):
         '''
@@ -210,13 +218,17 @@ class HelloWorld(cmdcopy.Cmd):
         except:
             self.stdout.write("file not specified")
 
-        # Game related stuff
+    # Game related stuff
+
+    def do_unlock(self, key):
+        if self.decrypt:
+            ignorethis.write_plaintext(cyphertext=self.files[self.progress], file_to_create=self.files[self.progress], key=key)
 
     def do_mail(self, data):  # mail function
         data = data.split()
         try:
-            if data[0] == 'anon@resnix.com':
-                self.progress += .1
+            if data[0] == 'anon@resnix.net':
+                self.progress += 0
                 self.stdout.write('welcome to the club')
                 dot(20, '.', .2)
                 self.stdout.write('receiving data')
@@ -229,32 +241,26 @@ class HelloWorld(cmdcopy.Cmd):
         except IndexError:
             self.stdout.write('Error: nothing written in body\n')
 
-
     def do_check(self, data):
         '''
         help the user out if confused.
         ** work in progress **
 
         '''
-        if self.progress == .1:
+        if self.progress == 0:
             with open("etc/ftp.comf", "r") as f:
                 line = f.readlines()
                 if line[1] == 'anon_access = true\n' or line[1] == 'anon_access= true\n' or line[1] == \
                     'anon_access =true\n' or line[1] == 'anon_access=true\n':
                     self.progress = 1
-                    self.stdout.write('nice job. Wait for your next task\n')
+                    self.stdout.write('nice job. what is the modern RFC for the FTP protocol?\n try it out with the "unlock [key]"')
                 else:
                     self.stdout.write('something is wrong....\n')
 
 
-
-
-        """
-        self.stdout.write('\nyou are at the %s stage. their are %s stages to go\n' % (
-        self.num_to_words[self.progress], self.stages - self.progress))
-
+        self.stdout.write('\nyou are at the %s stage.' % (self.num_to_words[self.progress]))
         self.stdout.write('\nrefer to "%s" for help on your task\n' % (self.texts[self.progress]))
-        """
+
 
 if __name__ == 'mainmodules.CommandPrompt':  # it works with this!!!
     HelloWorld()

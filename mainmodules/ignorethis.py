@@ -74,6 +74,11 @@ def write_plaintext(cyphertext, key, file_to_create):
         return "directory doesn't exist"
 
 
-def progress(data):
-    with open('gamedata', 'rw') as f:
-        f.write(data)
+def read_progress(variable):
+    with open('gamedata', 'r') as f:
+        f.read(variable)
+
+
+def write_progress(variable):
+    with open('gamedata', 'w') as f:
+        f.write(variable)

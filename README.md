@@ -1,4 +1,5 @@
-[![Build Status](https://travis-ci.org/1fabunicorn/resnix.svg?branch=master)](https://travis-ci.org/1fabunicorn/resnix)
+[![Build Status](https://travis-ci.org/1fabunicorn/resnix.svg?branch=master)](https://travis-ci.org/1fabunicorn/resnix) [![Code Health](https://landscape.io/github/1fabunicorn/resnix/master/landscape.svg?style=flat)](https://landscape.io/github/1fabunicorn/resnix/master)
+
 
 # Resnix
 
