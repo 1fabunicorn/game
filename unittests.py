@@ -63,7 +63,7 @@ def test_cd(capsys):
 def test_ls(capsys):
     CommandPrompt.HelloWorld().do_ls('')
     out, err = capsys.readouterr()
-    assert out == 'welcome.blob\n' # will do for now. should cd back to directory
+    assert out == 'choices.blob\nwelcome.blob\n' # will do for now. should cd back to directory
     assert err == ''
 
 
