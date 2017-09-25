@@ -3,8 +3,6 @@
 .AppleDouble
 .LSOverride
 
-#Pycharm
-.idea/
 
 #python
 **.pyc
@@ -37,5 +35,11 @@ Temporary Items
 /test
 /testing.py
 
+# Pycharm
+.idea/
+
 # pytest
 .cache
+
+# resnix biz
+user/gamedata

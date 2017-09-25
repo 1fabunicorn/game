@@ -3,15 +3,22 @@
 
 # Resnix
 
-This is the starting out README for Nova's and Ben project
+#### A game made by: :zero: :one: :zero: :one: :one: :zero:
 
-### This project's goal is a game. A game like no other. You are not prepared for this game.
+#### [-1fabunicorn](https://github.com/belenox) {Nova, [email](mailto:noah.trauben@gmail.com)} :rainbow:
 
---------------------------------------------------------------------------------------------------
-## Imagine when the linux kernel was released, it was made illegal worldwide.
-The unix kernel was released already, so the binaries are out on the black market.
-Trust few, bring down the governments from the inside with incriminating stuff they are doing.
-Why else would they make this illegal???
+#### shimmerousity {Charlotte} :stuck_out_tongue_winking_eye:
+
+#### [blenox](https://github.com/belenox)
+
+
+
+----------------------------------------------------------------------------------------
+# Imagine when Linux V1.0 was released, it was made illegal worldwide.
+
+##### Previous Linux versions before 1.0 have been released, meaning the binarys are on the net... :signal_strength: Illegally
+
+##### Trust few, bring down the world governments opposing open source. Enlighten the truth to the sheep!
 
 
 
@@ -21,11 +28,11 @@ Why else would they make this illegal???
 ### TODO:
 
    1. [ ] check command (for user too check progress on game)
-        
+
         2. [x] write function
-        
+
         3. [x] tell user what file to refer too for help
-        
+
         4. [ ] ...
 
    5. [x] some sort of game percentages
@@ -38,8 +45,6 @@ Why else would they make this illegal???
 
       9. [ ] task 1
 
-           [ ] have article written (Isaac and Amanda!)
+           10. [ ] write article (Isaac, Amanda and Charlotte!)
 
-      10. [ ] ...
-
-
+      11. [ ] ...
