@@ -29,15 +29,15 @@ class Test_Game(unittest.TestCase):
         self.assertRaises(ValueError, ignorethis.decrypt, [0], 't')
 
     def test_write_plaintext(self):
-        # self.assertEqual(ignorethis.write_plaintext(cyphertext='encrypted_texts/welcome.encrypted.txt', file_to_create='unittest.blob', key='5'), None)
+        # self.assertEqual(ignorethis.write_plaintext(cyphertext='encrypted_texts/welcome.encrypted', file_to_create='unittest.blob', key='5'), None)
         self.assertRaises(TypeError, ignorethis.write_plaintext, [0, 1, 2, 3, 4, 666], 'unittest.blob', 'RandomString')
 
 
-
 """
-    CommandPrompt tests:
-    tree function seems trivial, no seemingly good way to test it
-    """
+CommandPrompt tests:
+tree function seems trivial, no seemingly good way to test it
+"""
+
 def randomstr( n):
 
     letters = string.ascii_lowercase

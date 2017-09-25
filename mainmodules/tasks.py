@@ -16,32 +16,43 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
 
-
 def task(progress):
 
     if progress == -1:
-        with open("../user/etc/ftp.comf", "r") as f:
-            line = f.readlines()
-            if line[2] == 'online = true' or line[2] == 'online= true' or line[2] == 'online =true' or line[2] == 'online=true':
-                print('Nice job on your first task!\n  Unlock your next task with "unlock resist"')
-                progress = 0
-                return progress
-            else:
-                print('something is wrong....\n')
-                progress = -1
-                return progress
+
+        try:
+            with open("etc/ftp.comf", "r") as f:
+                line = f.readlines()
+                if line[2] == 'online = true' or line[2] == 'online= true' or line[2] == 'online =true' or line[2] == 'online=true':
+                    print(('#' * 55) + '\nNice job on your first task!\n  Unlock your next task with "unlock resist"\n' + ('#' * 55))
+                    progress = 0
+                    return progress
+                else:
+                    print('something is wrong....\n')
+                    progress = -1
+                    return progress
+        except IOError:
+            print('Run check from the root directory (user)')
+            progress = -1
+            return progress
 
 
     if progress == 0:
-        with open("../user/etc/ftp.comf", "r") as f:
-            line = f.readlines()
-            if line[1] == 'anon_access = true\n' or line[1] == 'anon_access= true\n' or line[1] == \
-                    'anon_access =true\n' or line[1] == 'anon_access=true\n':
-                print(('#' * 55) + '\nNice job. What is the modern RFC for the FTP protocol?\n  Try it out with "unlock [key]"\n'
-                      + ('#' * 55))
-                progress = 1
-                return progress
-            else:
-                print('something is wrong....\n')
-                progress = 0
-                return progress
+        try:
+
+            with open("etc/ftp.comf", "r") as f:
+                line = f.readlines()
+                if line[1] == 'anon_access = true\n' or line[1] == 'anon_access= true\n' or line[1] == \
+                        'anon_access =true\n' or line[1] == 'anon_access=true\n':
+                    print(('#' * 55) + '\nNice job. What is the RFC for the FTP protocol version you are using now?\n  Try it out with "unlock [key]"\n'
+                          + ('#' * 55))
+                    progress = 1
+                    return progress
+                else:
+                    print('something is wrong....\n')
+                    progress = 0
+                    return progress
+        except IOError:
+            print('Run check from the root directory (user)')
+            progress = 0
+            return progress

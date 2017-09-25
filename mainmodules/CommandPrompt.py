@@ -17,17 +17,12 @@
 """
 import sys
 import os
-from mainmodules import cmdcopy, ignorethis, tasks
+from mainmodules import cmdcopy, ignorethis, tasks, DotDotDot, mail
 import subprocess
 # from shlex import split
 import time
 
 
-def dot(loops, dots, timeper):
-    for i in range(loops):
-        print(dots * i)
-        sys.stdout.write("\033[F")  # Cursor up one line
-        time.sleep(timeper)
 
 
 
@@ -39,8 +34,8 @@ class HelloWorld(cmdcopy.Cmd):
     progress = -1
     stages = 6
     num_to_words = {-1: 'welcome.blob', 0: "start", 1: "choices", 2: "second", 3: "third", 4: "forth", 5: "fifth"}
-    texts = {-1: "texts/welcome.blob", 0: "a_start.blob", 1: "two_bla"}
-    files = {1:'encrypted_texts/choices', 2:'', 3:'', 4:'', 5:''}
+    texts = {-1: "texts/welcome.blob", 0: "texts/choices.blob", 1: "two_bla"}
+    encrypted_files = {-1: 'encrypted_texts/welcome.encrypted', 1: 'encrypted_texts/choices.encrypted', 2: '', 3: '', 4: '', 5: ''}
     decrypt = False
 
     try:
@@ -226,24 +221,11 @@ class HelloWorld(cmdcopy.Cmd):
 
     def do_unlock(self, key):
         if self.decrypt:
-            ignorethis.write_plaintext(cyphertext=self.files[self.progress], file_to_create=self.files[self.progress], key=key)
+            ignorethis.write_plaintext(cyphertext=self.encrypted_files[self.progress], file_to_create=self.encrypted_files[self.progress], key=key)
 
     def do_mail(self, data):  # mail function
-        data = data.split()
-        try:
-            if data[0] == 'anon@resnix.net':
-                self.progress += 0
-                self.stdout.write('welcome to the club')
-                dot(20, '.', .2)
-                self.stdout.write('receiving data')
-                dot(14, '.', .2)
-                self.stdout.write('Quick! Change line two of etc/ftp.comf to true')
+        self.progress = mail.mail_checkers(progress=self.progress, data=data)
 
-            text = data[1]
-            self.stdout.write("\n")
-
-        except IndexError:
-            self.stdout.write('Error: nothing written in body\n')
 
     def do_check(self, data):
         '''
@@ -255,6 +237,7 @@ class HelloWorld(cmdcopy.Cmd):
         self.progress = tasks.task(self.progress)
         self.stdout.write('\nyou are at the %s stage.' % (self.num_to_words[self.progress]))
         self.stdout.write('\nrefer to "%s" for help on your task\n' % (self.texts[self.progress]))
+
 
 if __name__ == 'mainmodules.CommandPrompt':  # it works with this!!!
     HelloWorld()
