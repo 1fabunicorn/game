@@ -17,7 +17,7 @@
 """
 import sys
 import os
-from mainmodules import cmdcopy, ignorethis, tasks, DotDotDot, mail
+from mainmodules import cmdcopy, ignorethis, tasks, mail
 import subprocess
 # from shlex import split
 import time

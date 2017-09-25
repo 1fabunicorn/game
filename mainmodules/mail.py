@@ -18,7 +18,7 @@
 
 # The similarity's between this and checks is great, I may refactor in the future
 
-import DotDotDot
+from mainmodules import DotDotDot
 
 
 def mail_checkers(data, progress):  # mail function
