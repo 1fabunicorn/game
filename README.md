@@ -28,10 +28,18 @@ Why else would they make this illegal???
         
         4. [ ] ...
 
-   1. [x] some sort of game percentages
+   5. [x] some sort of game percentages
 
-   2. [ ] Actually make storyline!
+   6. [ ] Actually make storyline!
 
-   3. [ ] line 3 of noncmd. fix this for portablity
+      7. [x] task -1
+
+      8. [x] task 0
+
+      9. [ ] task 1
+
+           [ ] have article written (Isaac and Amanda!)
+
+      10. [ ] ...
 
 
