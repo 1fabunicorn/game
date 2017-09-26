@@ -1,3 +1,4 @@
+from __future__ import print_function
 """
     vigenere cipher, as well as writing of cyphertext to file
     Copyright (C) 2017,  Nova Trauben, noah.trauben@gmail.com
@@ -17,7 +18,7 @@
 """
 
 import pickle
-
+from shlex import split
 
 def encrypt(plaintext, key):
     """
@@ -45,33 +46,25 @@ def decrypt(cyphertext, key):
     len_of_key = len(key)
 
     for keyindex, numbers in enumerate(cyphertext):
-        if numbers > 255 or numbers < 1:
-            raise ValueError
+        """if numbers > 255 or numbers < 0:
+            raise ValueError"""
 
         plaintext.append(chr(numbers - ord(key[keyindex % len_of_key]) % 255))
     return "".join(plaintext)
 
 
 def write_plaintext(cyphertext, key, file_to_create):
-    """
-
-    :param cyphertext: file where cyphertext exists in a pickled form
-    :param key: the decryption key
-    :param file_to_create: file that is created. user/texts/ is appended to the front of the file
-    :return: if directory doesnt exists, return, otherwise, create file
-    """
-
-    try:
-        with open(cyphertext, 'rb') as f:
-            encrypted = pickle.load(f)
-
-        plaintext = decrypt(encrypted, key)
-        file_to_create = 'user/texts/' + file_to_create
-
-        with open(file_to_create, 'w') as f:
-            f.write(plaintext)
-    except IOError:
-        return "directory doesn't exist"
+    with open(cyphertext, 'r') as cyphertext_file:
+        cyphertext_file = cyphertext_file.readlines(0)
+    for x in cyphertext_file:
+        cyphertext_file = x
+    cyphertext_file = cyphertext_file.split()
+    cyphertext_num = []
+    for num in cyphertext_file:
+        cyphertext_num.append(int(num))
+    plaintext = decrypt(cyphertext_num, key)
+    with open(file_to_create, 'w+') as f:
+        print(plaintext, file=f)
 
 
 def read_progress(variable):

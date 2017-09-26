@@ -19,11 +19,6 @@ import sys
 import os
 from mainmodules import cmdcopy, ignorethis, tasks, mail
 import subprocess
-# from shlex import split
-import time
-
-
-
 
 
 class HelloWorld(cmdcopy.Cmd):
@@ -31,12 +26,12 @@ class HelloWorld(cmdcopy.Cmd):
     if not os.path.split(os.getcwd())[1] == 'unittesting':
         os.chdir('user')  # changes directory to 'user'
 
-    progress = -1
+    progress = 0
     stages = 6
     num_to_words = {-1: 'welcome.blob', 0: "start", 1: "choices", 2: "second", 3: "third", 4: "forth", 5: "fifth"}
-    texts = {-1: "texts/welcome.blob", 0: "texts/choices.blob", 1: "two_bla"}
-    encrypted_files = {-1: 'encrypted_texts/welcome.encrypted', 1: 'encrypted_texts/choices.encrypted', 2: '', 3: '', 4: '', 5: ''}
-    decrypt = False
+    texts = {-1: "texts/welcome.blob", 0: "texts/choices.blob", 1: "texts/two_bla"}
+    encrypted_files = {-1: '../encrypted_texts/welcome.encrypted', 0: '../encrypted_texts/choices.encrypted', 1: '../encrypted_texts/test.encrypted'}
+    decrypt = True
 
     try:
         ignorethis.read_progress(progress)
@@ -46,6 +41,8 @@ class HelloWorld(cmdcopy.Cmd):
     def do_EOF(self, line):
         '''
         syntax 'EOF'
+        exit the game
+
         '''
         ignorethis.write_progress(str(self.progress))
         sys.exit('\nbye!\n')
@@ -56,6 +53,7 @@ class HelloWorld(cmdcopy.Cmd):
         '''
         syntax 'cd [directory]'
         change to [directory]
+
         '''
 
         args = directory.split(' ')
@@ -77,6 +75,7 @@ class HelloWorld(cmdcopy.Cmd):
         '''
         syntax 'pwd'
         self.stdout.write working directory
+
         '''
         subprocess.check_call('pwd')
 
@@ -121,6 +120,7 @@ class HelloWorld(cmdcopy.Cmd):
               use a long listing format
             -1
               list one file per line.  Avoid '\n' with -q or -b
+
         '''
 
         if not args:
@@ -146,6 +146,7 @@ class HelloWorld(cmdcopy.Cmd):
           number all output lines
         -E, --show-ends
           display $ at end of each line
+
         '''
 
         try:
@@ -158,7 +159,6 @@ class HelloWorld(cmdcopy.Cmd):
         clear - clear the terminal screen
 
         '''
-
         subprocess.call(['clear'])
 
     def do_nano(self, file):
@@ -191,7 +191,6 @@ class HelloWorld(cmdcopy.Cmd):
         if [file] is omitted, a temporary file will be created
 
         '''
-
         # hacker proofing
         if os.path.split(os.getcwd())[1] != os.path.split(file)[0] and file[0] == '/':
             self.stdout.write('not a directory')
@@ -218,14 +217,14 @@ class HelloWorld(cmdcopy.Cmd):
     def do_progress(self, none):
         print(self.progress)
 
-
     def do_unlock(self, key):
-        if self.decrypt:
-            ignorethis.write_plaintext(cyphertext=self.encrypted_files[self.progress], file_to_create=self.encrypted_files[self.progress], key=key)
+        if key:
+            ignorethis.write_plaintext(cyphertext=self.encrypted_files[self.progress], file_to_create=self.texts[self.progress], key=key)
+        else:
+            self.stdout.write('Please specify key\n')
 
     def do_mail(self, data):  # mail function
         self.progress = mail.mail_checkers(progress=self.progress, data=data)
-
 
     def do_check(self, data):
         '''
@@ -239,5 +238,5 @@ class HelloWorld(cmdcopy.Cmd):
         self.stdout.write('\nrefer to "%s" for help on your task\n' % (self.texts[self.progress]))
 
 
-if __name__ == 'mainmodules.CommandPrompt':  # it works with this!!!
+if __name__ == 'mainmodules.CommandPrompt':
     HelloWorld()
