@@ -17,8 +17,6 @@ from __future__ import print_function
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
 
-import pickle
-from shlex import split
 
 def encrypt(plaintext, key):
     """
@@ -46,8 +44,8 @@ def decrypt(cyphertext, key):
     len_of_key = len(key)
 
     for keyindex, numbers in enumerate(cyphertext):
-        """if numbers > 255 or numbers < 0:
-            raise ValueError"""
+        if numbers > 255 or numbers < 0:
+            raise ValueError
 
         plaintext.append(chr(numbers - ord(key[keyindex % len_of_key]) % 255))
     return "".join(plaintext)

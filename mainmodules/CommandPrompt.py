@@ -201,14 +201,14 @@ class HelloWorld(cmdcopy.Cmd):
             osCommandString = "vi " + file
         os.system(osCommandString)
 
-    def do_touch(self, file):
+    def do_touch(self, f):
         '''
         touch - "touch" or create a new file
         if file already exist, add an updated timestamp
 
         '''
         try:
-            subprocess.call(['touch', file])
+            subprocess.call(['touch', f])
         except:
             self.stdout.write("file not specified")
 
