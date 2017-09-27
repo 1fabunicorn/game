@@ -26,7 +26,7 @@ class HelloWorld(cmdcopy.Cmd):
     if not os.path.split(os.getcwd())[1] == 'unittesting':
         os.chdir('user')  # changes directory to 'user'
 
-    progress = 0
+    progress = -1
     stages = 6
     num_to_words = {-1: 'welcome.blob', 0: "start", 1: "choices", 2: "second", 3: "third", 4: "forth", 5: "fifth"}
     texts = {-1: "texts/welcome.blob", 0: "texts/choices.blob", 1: "texts/two_bla"}
@@ -218,8 +218,12 @@ class HelloWorld(cmdcopy.Cmd):
         print(self.progress)
 
     def do_unlock(self, key):
+
         if key:
-            ignorethis.write_plaintext(cyphertext=self.encrypted_files[self.progress], file_to_create=self.texts[self.progress], key=key)
+            try:
+                ignorethis.write_plaintext(cyphertext=self.encrypted_files[self.progress], file_to_create=self.texts[self.progress], key=key)
+            except KeyError:
+                self.stdout.write('ds%^qWRONG3tgd%^KEY]\n')
         else:
             self.stdout.write('Please specify key\n')
 
