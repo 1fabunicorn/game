@@ -228,6 +228,12 @@ class HelloWorld(cmdcopy.Cmd):
             self.stdout.write('Please specify key\n')
 
     def do_mail(self, data):  # mail function
+        '''
+        email a person!
+        syntax: mail [person@domain.net] [email body]
+
+        '''
+
         self.progress = mail.mail_checkers(progress=self.progress, data=data)
 
     def do_check(self, data):

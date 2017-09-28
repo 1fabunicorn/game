@@ -1,5 +1,5 @@
 """
-    mail module class
+    mail module
     Copyright (C) 2017,  Nova Trauben, noah.trauben@gmail.com
 
     This program is free software: you can redistribute it and/or modify
@@ -16,7 +16,7 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
 
-# The similarity's between this and checks is great, I may refactor in the future
+# The similarity's between this and checks is extreme, I may refactor in the future
 
 from mainmodules import DotDotDot
 
@@ -35,7 +35,15 @@ def mail_checkers(data, progress):  # mail function
                 print('Quick! Change line two of etc/ftp.comf to true')
                 progress += 0
                 return progress
-        except KeyError:
+        except IndexError:
             print('No email specified')
 
+
+
         print('\n')
+
+    if progress == 0:
+        pass
+
+    if progress == 1:
+        pass
