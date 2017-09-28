@@ -216,7 +216,11 @@ class HelloWorld(cmdcopy.Cmd):
         print(int(ignorethis.read_progress()))
 
     def do_unlock(self, key):
+        '''
+        unlock next task!
+        syntax: unlock
 
+        '''
         if key:
             try:
                 ignorethis.write_plaintext(cyphertext=self.encrypted_files[self.progress], file_to_create=self.texts[self.progress], key=key)
