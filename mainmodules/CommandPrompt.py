@@ -148,10 +148,11 @@ class HelloWorld(cmdcopy.Cmd):
 
         '''
 
-        try:
-            subprocess.call(['cat', file])
-        except Exception:
-            pass
+        subprocess.call(['cat', file])
+        # try:
+        #     subprocess.call(['cat', file])
+        # except Exception:
+        #     pass
 
     def do_clear(self, nothing):
         '''

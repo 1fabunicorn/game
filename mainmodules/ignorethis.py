@@ -74,7 +74,8 @@ def read_progress():
         p = -1
         return p
 
+
 def write_progress(variable):
-    with open('gamedata', 'w+') as f:
+    with open('../gamedata', 'w+') as f:
         f.write(variable)
     return variable
