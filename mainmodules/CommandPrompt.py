@@ -23,7 +23,7 @@ import subprocess
 
 class HelloWorld(cmdcopy.Cmd):
 
-    if not os.path.split(os.getcwd())[1] == 'unittesting':
+    if not os.path.split(os.getcwd())[1] == 'user':
         os.chdir('user')  # changes directory to 'user'
 
     progress = int(ignorethis.read_progress())
