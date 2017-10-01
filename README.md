@@ -7,7 +7,7 @@
 
 #### [-1fabunicorn](https://github.com/belenox) {Nova, [email](mailto:noah.trauben@gmail.com)} :rainbow:
 
-#### shimmerousity {Charlotte} :stuck_out_tongue_winking_eye:
+#### shimmerousity {Charlotte, [email](mailto:charlottealanjones@gmail.com)} :stuck_out_tongue_winking_eye:
 
 #### [blenox](https://github.com/belenox)
 

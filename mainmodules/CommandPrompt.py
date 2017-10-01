@@ -211,6 +211,11 @@ class HelloWorld(cmdcopy.Cmd):
 
     # Game related stuff
 
+    def do_browser(self,  webaddress):
+        if webaddress.lower() == 'helloworld.net':
+            pass
+
+
     def do_progress(self, none):
         # print(self.progress)
         print(int(ignorethis.read_progress()))
