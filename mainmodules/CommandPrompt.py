@@ -198,6 +198,25 @@ class HelloWorld(cmdcopy.Cmd):
             osCommandString = "vi " + file
         os.system(osCommandString)
 
+    def do_vim(self, file):
+        '''
+        syntax 'nano [file_to_edit_or_create]'
+        vi - a less friendly text editor
+
+
+        if [file] is omitted, a temporary file will be created
+
+        '''
+        # hacker proofing
+        if os.path.split(os.getcwd())[1] != os.path.split(file)[0] and file[0] == '/':
+            self.stdout.write('not a directory')
+            return
+        elif not file:
+            osCommandString = "vi " + "temp.txt"
+        else:
+            osCommandString = "vi " + file
+        os.system(osCommandString)
+
     def do_touch(self, f):
         '''
         touch - "touch" or create a new file
@@ -213,8 +232,7 @@ class HelloWorld(cmdcopy.Cmd):
 
     def do_browser(self,  webaddress):
         if webaddress.lower() == 'helloworld.net':
-            pass
-
+            os.system("lynx ../htmls/helloworld.net.html")
 
     def do_progress(self, none):
         # print(self.progress)
