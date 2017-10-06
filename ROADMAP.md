@@ -1,6 +1,6 @@
 ## Roadmap
 
- ##### 1. [x] Task -1
+##### 1. [x] Task -1
    
 ######          - [x] change line 3 to `true`
     
@@ -20,7 +20,7 @@
 
 ######          - [ ] read mailing list
 
-######          - [ ] exploit goverment server, finding some files
+######          - [ ] exploit government server, finding some files
 
 ######          - [ ] introduce 'leak meter' dynamic. 
         

@@ -226,12 +226,15 @@ class HelloWorld(cmdcopy.Cmd):
             subprocess.call(['touch', f])
         except:
             self.stdout.write("file not specified")
+    def do_ssh(self, address):
+        if address == '58.53.146.123':
+            pass
 
     # Game related stuff
 
     def do_browser(self,  webaddress):
         if webaddress.lower() == 'helloworld.net':
-            os.system("lynx ../htmls/helloworld.net.html")
+            os.system("lynx ../dynamics/htmls/helloworld.net.html")
 
     def do_progress(self, none):
         print(self.progress)
