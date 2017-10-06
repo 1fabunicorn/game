@@ -1,19 +1,21 @@
 ## Roadmap
 
- ##### 1. [x] Task -1
+ ##### 1. :heavy_check_mark: Task -1
    
-######    - [x]change line 3 to `true`
+######   - :heavy_check_mark: change line 3 to `true`
     
-##### 2. [x] Task 0
+##### 2. :heavy_check_mark: Task 0
     
-######    - [x] change line two of etc/ftp.comf to `true`
+######   - :heavy_check_mark: change line two of etc/ftp.comf to `true`
     
-######   - [x] unlock with finding the rfc number for the ftp at the time
+######   - :heavy_check_mark: unlock with finding the rfc number for the ftp at the time
 
-##### 3. [x] Task 1
+##### 3. :heavy_check_mark: Task 1
     
-######    - [x] find keywords in article
+######   - :heavy_check_mark: find keywords in article
     
-######   - [x] unlock with helloworld
+######   - :heavy_check_mark: unlock with helloworld
 
-##### 4. [ ] Task 2
+##### 4. :x: Task 2
+
+######   - :x: email people

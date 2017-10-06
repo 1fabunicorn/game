@@ -23,28 +23,3 @@
 
 
 ![cool old terminal gif](https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/DEC_VT100_terminal.jpg/512px-DEC_VT100_terminal.jpg)
-
-
-### TODO:
-
-   1. [ ] check command (for user too check progress on game)
-
-        2. [x] write function
-
-        3. [x] tell user what file to refer too for help
-
-        4. [ ] ...
-
-   5. [x] some sort of game percentages
-
-   6. [ ] Actually make storyline!
-
-      7. [x] task -1
-
-      8. [x] task 0
-
-      9. [ ] task 1
-
-           10. [ ] write article (Isaac, Amanda and Charlotte!)
-
-      11. [ ] ...
