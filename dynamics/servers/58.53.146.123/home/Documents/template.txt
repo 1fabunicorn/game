@@ -1,0 +1,16 @@
+_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-
+
+                                -:THEY:-
+
+                            INCIDENT REPORT
+                             ::TOP SECRET::
+                               [ticket #]
+
+[brief description of event]
+                    ______________________________
+
+[longer description
+Add details such as
+    * Y ID
+    * Description of event
+    * What will be done in the future
