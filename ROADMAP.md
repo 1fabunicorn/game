@@ -1,19 +1,19 @@
 ## Roadmap
 
-1. [x] ##### Task -1
+ ##### 1. [x] Task -1
    
-    - [x] ###### change line 3 to `true`
+######    - [x]change line 3 to `true`
     
-2. [x] ##### Task 0
+##### 2. [x] Task 0
     
-    - [x] ###### change line two of etc/ftp.comf to `true`
+######    - [x] change line two of etc/ftp.comf to `true`
     
-    - [ ] ###### unlock with finding the rfc number for the ftp at the time
+######   - [x] unlock with finding the rfc number for the ftp at the time
 
-3.[x] ##### Task 1
+##### 3. [x] Task 1
     
-    - [x] ###### find keywords in article
+######    - [x] find keywords in article
     
-    - [x] ###### unlock with helloworld
+######   - [x] unlock with helloworld
 
-4.[] ##### Task 2
+##### 4. [ ] Task 2
