@@ -1,21 +1,26 @@
 ## Roadmap
 
- ##### 1. :heavy_check_mark: Task -1
+ ##### 1. [x] Task -1
    
-######          - :heavy_check_mark: change line 3 to `true`
+######          - [x] change line 3 to `true`
     
-##### 2. :heavy_check_mark: Task 0
+##### 2. [x] Task 0
     
-######          - :heavy_check_mark: change line two of etc/ftp.comf to `true`
+######          - [x] change line two of etc/ftp.comf to `true`
     
-######          :heavy_check_mark: unlock with finding the rfc number for the ftp at the time
+######          - [x] unlock with finding the rfc number for the ftp at the time
 
-##### 3. :heavy_check_mark: Task 1
+##### 3. [x] Task 1
     
-######          :heavy_check_mark: find keywords in article
+######          - [x] find keywords in article
     
-######          :heavy_check_mark: unlock with helloworld
+######          - [x] unlock with helloworld
 
-##### 4. :x: Task 2
+##### 4. [ ] Task 2
 
-######          :x: email people
+######          - [ ] read mailing list
+
+######          - [ ] exploit goverment server, finding some files
+
+######          - [ ] introduce 'leak meter' dynamic. 
+        
