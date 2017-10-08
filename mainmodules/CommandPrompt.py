@@ -17,8 +17,9 @@
 """
 import sys
 import os
-from mainmodules import cmdcopy, ignorethis, tasks, mail
+from mainmodules import cmdcopy, ignorethis, tasks, mail, DotDotDot
 import subprocess
+import time
 
 
 class HelloWorld(cmdcopy.Cmd):
@@ -27,7 +28,7 @@ class HelloWorld(cmdcopy.Cmd):
         os.chdir('user')  # changes directory to 'user'
 
     progress = int(ignorethis.read_progress())
-
+    login_count = 1
     stages = 6
     num_to_words = {-1: 'welcome.blob', 0: "start", 1: "choices", 2: "second", 3: "third", 4: "forth", 5: "fifth"}
     texts = {-1: "texts/welcome.blob", 0: "texts/choices.blob", 1: "texts/sleep.blob"}
@@ -55,11 +56,16 @@ class HelloWorld(cmdcopy.Cmd):
         '''
 
         args = directory.split(' ')
-        # next 6 lines are cheater proof biz
+        # next 6 lines are cheater proofing
 
-        if args[0] == 'game':
+        if args[0] == 'resnix':
             self.stdout.write('\nnot a directory\n')
             return
+
+        if os.path.split(os.getcwd())[1] == '58.53.146.123' and args[0] == '..': # task 1 server
+            self.stdout.write('\nnot a directory\n')
+            return
+
         elif os.path.split(os.getcwd())[1] == 'user' and args[0] == '..':
             self.stdout.write('\nnot a directory\n')
             return
@@ -226,9 +232,21 @@ class HelloWorld(cmdcopy.Cmd):
             subprocess.call(['touch', f])
         except:
             self.stdout.write("file not specified")
+    # ssh related functions
+
     def do_ssh(self, address):
+        self.login_count += 1
         if address == '58.53.146.123':
-            pass
+            os.chdir('../dynamics/servers/58.53.146.123')
+
+    def do_logout(self, none):
+        if self.login_count > 1:
+            for x in range(1,4):
+                self.stdout.write("logging out " + ('.' * x) + "\r")
+                time.sleep(1)
+            self.stdout.write("\n")
+            self.login_count -= 1
+            os.chdir('../../../user')
 
     # Game related stuff
 
@@ -238,7 +256,7 @@ class HelloWorld(cmdcopy.Cmd):
 
     def do_progress(self, none):
         print(self.progress)
-        #print(int(ignorethis.read_progress()))
+        # print(int(ignorethis.read_progress()))
 
     def do_unlock(self, key):
         '''
