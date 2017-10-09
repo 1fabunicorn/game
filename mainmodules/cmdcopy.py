@@ -108,7 +108,7 @@ class Cmd:
                     if self.use_rawinput:
                         try:
                             try:
-                                line = raw_input(os.path.split(os.getcwd())[1] + '$ ') # edited
+                                line = raw_input(os.path.split(os.getcwd())[1] + '$ ')  # edited
                             except NameError:
                                 line = input(os.path.split(os.getcwd())[1] + '$ ')
                         except EOFError:
@@ -223,7 +223,10 @@ class Cmd:
         returns.
 
         """
-        self.stdout.write('bash: %s command not found\n'%line)
+        try:  # only prints the command, not the arg
+            self.stdout.write('bash: %s command not found\n' % line.split()[0])
+        except IndexError:
+            self.stdout.write('bash: %s command not found\n' % line)
 
     def completedefault(self, *ignored):
         """Method called to complete an input line when no command-specific

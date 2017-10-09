@@ -235,15 +235,18 @@ class HelloWorld(cmdcopy.Cmd):
     # ssh related functions
 
     def do_ssh(self, address):
-        self.login_count += 1
         if address == '58.53.146.123':
+            self.stdout.write("logging into 58.53.146.123")
+            time.sleep(1)
+            self.stdout.write("  ...success!\n")
+            self.login_count += 1
             os.chdir('../dynamics/servers/58.53.146.123')
 
     def do_logout(self, none):
         if self.login_count > 1:
             for x in range(1,4):
                 self.stdout.write("logging out " + ('.' * x) + "\r")
-                time.sleep(1)
+                time.sleep(0.25)
             self.stdout.write("\n")
             self.login_count -= 1
             os.chdir('../../../user')
