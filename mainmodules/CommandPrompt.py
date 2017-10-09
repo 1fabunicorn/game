@@ -44,7 +44,7 @@ class HelloWorld(cmdcopy.Cmd):
 
         '''
         ignorethis.write_progress(str(self.progress))
-        sys.exit('\nbye!\n')
+        sys.exit('bye!\n')
 
     # ported builtins
 
@@ -239,8 +239,8 @@ class HelloWorld(cmdcopy.Cmd):
             self.stdout.write("logging into 58.53.146.123")
             time.sleep(1)
             self.stdout.write("  ...success!\n")
-            self.login_count += 1
             os.chdir('../dynamics/servers/58.53.146.123')
+            self.login_count += 1
 
     def do_logout(self, none):
         if self.login_count > 1:
@@ -248,8 +248,11 @@ class HelloWorld(cmdcopy.Cmd):
                 self.stdout.write("logging out " + ('.' * x) + "\r")
                 time.sleep(0.25)
             self.stdout.write("\n")
-            self.login_count -= 1
             os.chdir('../../../user')
+            self.login_count -= 1
+
+        elif self.login_count == 1:
+            self.do_EOF(None)
 
     # Game related stuff
 
@@ -298,3 +301,4 @@ class HelloWorld(cmdcopy.Cmd):
 
 if __name__ == 'mainmodules.CommandPrompt':
     HelloWorld()
+print("behavior")
