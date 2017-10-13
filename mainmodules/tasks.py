@@ -15,7 +15,7 @@
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
-
+import os
 def task(progress):
 
     if progress == -1:
@@ -56,3 +56,28 @@ def task(progress):
             print('Run check from the root directory (user)')
             progress = 0
             return progress
+
+    if progress == 1:
+        print("What drives markets?\nTry it out with 'unlock [word]'")
+        try:
+            with open('/texts/AKAspy.blob', 'r') as f:
+                if f.readlines()[0:4] == "Check":
+                    # ask question here for unlock key
+                    return progress
+                else:
+                    print('something is wrong....\n')
+                    progress = 1
+                    return progress
+
+        except IOError:
+            print('something is wrong, did you find the unlock key?\nPosibly the file, AKAspy.blob doest exist?')
+
+
+        progress = 2
+        return progress
+
+
+
+
+    if progress == 2:
+        t

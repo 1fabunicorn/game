@@ -14,7 +14,7 @@
     
 ######          - [x] find keywords in article
     
-######          - [x] unlock with helloworld
+######          - [x] unlock with fear
 
 ##### 4. [ ] Task 2
 

@@ -31,9 +31,9 @@ class HelloWorld(cmdcopy.Cmd):
     login_count = 1
     stages = 6
     num_to_words = {-1: 'welcome.blob', 0: "start", 1: "choices", 2: "second", 3: "third", 4: "forth", 5: "fifth"}
-    texts = {-1: "texts/welcome.blob", 0: "texts/choices.blob", 1: "texts/sleep.blob"}
-    encrypted_files = {-1: '../encrypted_texts/welcome.encrypted', 0: '../encrypted_texts/choices.encrypted', 1: '../encrypted_texts/sleep.encrypted'}
-    decrypt = True
+    texts = {-1: "texts/welcome.blob", 0: "texts/choices.blob", 1: "texts/sleep.blob", 2: "texts/AKAspy.blob"}
+    encrypted_files = {-1: '../encrypted_texts/welcome.encrypted', 0: '../encrypted_texts/choices.encrypted',
+                       1: '../encrypted_texts/sleep.encrypted', 2: '../encrypted_texts/AKAspy.encrypted'}
 
 
 
@@ -274,9 +274,9 @@ class HelloWorld(cmdcopy.Cmd):
             try:
                 ignorethis.write_plaintext(cyphertext=self.encrypted_files[self.progress], file_to_create=self.texts[self.progress], key=key)
             except KeyError:
-                self.stdout.write('ds%^qWRONG3tgd%^KEY]\n')
+                self.stdout.write("ds%^qWRONG3tgd%^KEY]\n")
         else:
-            self.stdout.write('Please specify key\n')
+            self.stdout.write("Please specify key\n")
 
     def do_mail(self, data):  # mail function
         '''
@@ -301,4 +301,3 @@ class HelloWorld(cmdcopy.Cmd):
 
 if __name__ == 'mainmodules.CommandPrompt':
     HelloWorld()
-print("behavior")
