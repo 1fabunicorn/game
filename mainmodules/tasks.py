@@ -57,6 +57,7 @@ def task(progress):
             progress = 0
             return progress
 
+
     if progress == 1:
         print("What drives markets?\nTry it out with 'unlock [word]'")
         try:
@@ -80,4 +81,4 @@ def task(progress):
 
 
     if progress == 2:
-        t
+        pass

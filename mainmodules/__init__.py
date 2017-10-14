@@ -1,1 +1,1 @@
-__all__ = ['border', 'cmdcopy', 'CommandPrompt', 'DotDotDot', 'ignorethis', 'mail', 'tasks', 'TermUtil', ]
+__all__ = ['border', 'cmdcopy', 'CommandPrompt', 'datastruct', 'DotDotDot', 'ignorethis', 'mail', 'tasks', 'TermUtil', ]

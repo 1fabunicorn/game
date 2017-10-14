@@ -287,6 +287,12 @@ class HelloWorld(cmdcopy.Cmd):
 
         self.progress = mail.mail_checkers(progress=self.progress, data=data)
 
+    def do_leak(self, file):
+        pass
+
+    def do_meter(self, none):
+        pass
+
     def do_check(self, data):
         '''
         help the user out if confused.

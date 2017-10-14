@@ -67,7 +67,7 @@ def write_plaintext(cyphertext, key, file_to_create):
 
 def read_progress():
     try:
-        with open('../gamedata', 'r') as f:
+        with open('../saves', 'r') as f:
             p = f.readlines()
         return ''.join(p)
     except IOError:
@@ -76,6 +76,6 @@ def read_progress():
 
 
 def write_progress(variable):
-    with open('../gamedata', 'w+') as f:
+    with open('../saves', 'w+') as f:
         f.write(variable)
     return variable

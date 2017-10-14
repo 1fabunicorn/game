@@ -1,26 +1,26 @@
-## Roadmap
+ #Roadmap
 
-##### 1. [x] Task -1
+ 1. [x] **Task -1**
    
-######          - [x] change line 3 to `true`
+       - [x] change line 3 to `true`
     
-##### 2. [x] Task 0
+ 2. [x] **Task 0**
     
-######          - [x] change line two of etc/ftp.comf to `true`
+       - [x] change line two of etc/ftp.comf to `true`
     
-######          - [x] unlock with finding the rfc number for the ftp at the time
+       - [x] unlock with finding the rfc number for the ftp at the time
 
-##### 3. [x] Task 1
+ 3. [x] **Task 1**
     
-######          - [x] find keywords in article
+       - [x] find keywords in article
     
-######          - [x] unlock with fear
+       - [x] unlock with fear
 
-##### 4. [ ] Task 2
+ 4. [ ] **Task 2**
 
-######          - [ ] read mailing list
+       - [ ] read mailing list
 
-######          - [ ] exploit government server, finding some files
+       - [ ] exploit government server, finding some files
 
-######          - [ ] introduce 'leak meter' dynamic. 
+       - [ ] introduce 'leak meter' dynamic. 
         
