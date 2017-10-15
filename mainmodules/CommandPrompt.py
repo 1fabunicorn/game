@@ -17,24 +17,25 @@
 """
 import sys
 import os
-from mainmodules import cmdcopy, ignorethis, tasks, mail, DotDotDot
+from mainmodules import cmdcopy, ignorethis, tasks, mail, datastruct
 import subprocess
 import time
+
+d = datastruct.data(progress=int(ignorethis.read_progress()),
+                login_count=1,
+                stages=6,
+                num_to_words={-1: 'welcome.blob', 0: "start", 1: "choices", 2: "second", 3: "third", 4: "forth",
+                              5: "fifth"},
+                texts={-1: "texts/welcome.blob", 0: "texts/choices.blob", 1: "texts/sleep.blob",
+                       2: "texts/AKAspy.blob"},
+                encrypted_files={-1: '../encrypted_texts/welcome.encrypted', 0: '../encrypted_texts/choices.encrypted',
+                                 1: '../encrypted_texts/sleep.encrypted', 2: '../encrypted_texts/AKAspy.encrypted'})
 
 
 class HelloWorld(cmdcopy.Cmd):
 
     if not os.path.split(os.getcwd())[1] == 'user':
         os.chdir('user')  # changes directory to 'user'
-
-    progress = int(ignorethis.read_progress())
-    login_count = 1
-    stages = 6
-    num_to_words = {-1: 'welcome.blob', 0: "start", 1: "choices", 2: "second", 3: "third", 4: "forth", 5: "fifth"}
-    texts = {-1: "texts/welcome.blob", 0: "texts/choices.blob", 1: "texts/sleep.blob", 2: "texts/AKAspy.blob"}
-    encrypted_files = {-1: '../encrypted_texts/welcome.encrypted', 0: '../encrypted_texts/choices.encrypted',
-                       1: '../encrypted_texts/sleep.encrypted', 2: '../encrypted_texts/AKAspy.encrypted'}
-
 
 
     def do_EOF(self, line):
@@ -43,7 +44,7 @@ class HelloWorld(cmdcopy.Cmd):
         exit the game
 
         '''
-        ignorethis.write_progress(str(self.progress))
+        ignorethis.write_progress(str(d.progress))
         sys.exit('bye!\n')
 
     # ported builtins
@@ -240,18 +241,18 @@ class HelloWorld(cmdcopy.Cmd):
             time.sleep(1)
             self.stdout.write("  ...success!\n")
             os.chdir('../dynamics/servers/58.53.146.123')
-            self.login_count += 1
+            d.login_count += 1
 
     def do_logout(self, none):
-        if self.login_count > 1:
+        if d.login_count > 1:
             for x in range(1,4):
                 self.stdout.write("logging out " + ('.' * x) + "\r")
                 time.sleep(0.25)
             self.stdout.write("\n")
             os.chdir('../../../user')
-            self.login_count -= 1
+            d.login_count -= 1
 
-        elif self.login_count == 1:
+        elif d.login_count == 1:
             self.do_EOF(None)
 
     # Game related stuff
@@ -261,7 +262,7 @@ class HelloWorld(cmdcopy.Cmd):
             os.system("lynx ../dynamics/htmls/helloworld.net.html")
 
     def do_progress(self, none):
-        print(self.progress)
+        print(d.progress)
         # print(int(ignorethis.read_progress()))
 
     def do_unlock(self, key):
@@ -272,7 +273,7 @@ class HelloWorld(cmdcopy.Cmd):
         '''
         if key:
             try:
-                ignorethis.write_plaintext(cyphertext=self.encrypted_files[self.progress], file_to_create=self.texts[self.progress], key=key)
+                ignorethis.write_plaintext(cyphertext=d.encrypted_files[d.progress], file_to_create=d.texts[d.progress], key=key)
             except KeyError:
                 self.stdout.write("ds%^qWRONG3tgd%^KEY]\n")
         else:
@@ -285,7 +286,7 @@ class HelloWorld(cmdcopy.Cmd):
 
         '''
 
-        self.progress = mail.mail_checkers(progress=self.progress, data=data)
+        d.progress = mail.mail_checkers(progress=d.progress, data=data)
 
     def do_leak(self, file):
         pass
@@ -300,9 +301,9 @@ class HelloWorld(cmdcopy.Cmd):
 
         '''
 
-        self.progress = tasks.task(self.progress)
-        self.stdout.write('\nyou are at the %s stage.' % (self.num_to_words[self.progress]))
-        self.stdout.write('\nrefer to "%s" for help on your task\n' % (self.texts[self.progress]))
+        d.progress = tasks.task(d.progress)
+        self.stdout.write('\nyou are at the %s stage.' % (d.num_to_words[d.progress]))
+        self.stdout.write('\nrefer to "%s" for help on your task\n' % (d.texts[d.progress]))
 
 
 if __name__ == 'mainmodules.CommandPrompt':
