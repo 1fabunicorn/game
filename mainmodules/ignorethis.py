@@ -69,7 +69,7 @@ def read_progress():
     try:
         with open('../saves', 'r') as f:
             p = f.readlines()
-        return ''.join(p)
+        return int(''.join(p))
     except IOError:
         p = -1
         return p
