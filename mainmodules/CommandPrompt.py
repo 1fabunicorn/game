@@ -26,9 +26,11 @@ d = datastruct.data
 
 class HelloWorld(cmdcopy.Cmd):
 
+
     if not os.path.split(os.getcwd())[1] == 'user':
         os.chdir('user')  # changes directory to 'user'
 
+    progress = ignorethis.read_progress()
 
     def do_EOF(self, line):
         '''
@@ -148,7 +150,6 @@ class HelloWorld(cmdcopy.Cmd):
 
         subprocess.call(['cat', file])
 
-
     def do_clear(self, nothing):
         '''
         clear - clear the terminal screen
@@ -254,8 +255,8 @@ class HelloWorld(cmdcopy.Cmd):
             os.system("lynx ../dynamics/htmls/helloworld.net.html")
 
     def do_progress(self, none):
-        print(d.progress)
-        # print(int(ignorethis.read_progress()))
+
+        print(self.progress)
 
     def do_unlock(self, key):
         '''
@@ -278,7 +279,7 @@ class HelloWorld(cmdcopy.Cmd):
 
         '''
 
-        d.progress = mail.mail_checkers(progress=d.progress, data=data)
+        self.progress = mail.mail_checkers(progress=d.progress, data=data)
 
     def do_leak(self, file):
         pass
@@ -296,7 +297,6 @@ class HelloWorld(cmdcopy.Cmd):
         d.progress = tasks.task(d.progress)
         self.stdout.write('\nyou are at the %s stage.' % (d.num_to_words[d.progress]))
         self.stdout.write('\nrefer to "%s" for help on your task\n' % (d.texts[d.progress]))
-
 
 if __name__ == 'mainmodules.CommandPrompt':
     HelloWorld()

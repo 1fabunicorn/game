@@ -25,5 +25,3 @@ class data:
     texts = {-1: "texts/welcome.blob", 0: "texts/choices.blob", 1: "texts/sleep.blob", 2: "texts/AKAspy.blob"}
     encrypted_files = {-1: '../encrypted_texts/welcome.encrypted', 0: '../encrypted_texts/choices.encrypted',
                        1: '../encrypted_texts/sleep.encrypted', 2: '../encrypted_texts/AKAspy.encrypted'}
-    progress = ignorethis.read_progress()
-
