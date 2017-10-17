@@ -29,9 +29,9 @@ def mail_checkers(data, progress):  # mail function
             if data[0] == 'anon@resnix.net':
 
                 print('welcome to the club')
-                DotDotDot.dot(20, '.', .2)
+                DotDotDot.uniformdots(20, '.', .2)
                 print('receiving data')
-                DotDotDot.dot(14, '.', .2)
+                DotDotDot.uniformdots(14, '.', .2)
                 print('Quick! Change line two of etc/ftp.comf to true')
                 progress += 0
                 return progress

@@ -17,9 +17,10 @@
 """
 import sys
 import os
-from mainmodules import cmdcopy, ignorethis, tasks, mail, datastruct
+from mainmodules import cmdcopy, ignorethis, tasks, mail, datastruct, DotDotDot
 import subprocess
 import time
+import random
 
 d = datastruct.data
 
@@ -31,6 +32,7 @@ class HelloWorld(cmdcopy.Cmd):
         os.chdir('user')  # changes directory to 'user'
 
     progress = ignorethis.read_progress()
+    leak_points = ignorethis.read_leakpoints()
 
     def do_EOF(self, line):
         '''
@@ -38,7 +40,8 @@ class HelloWorld(cmdcopy.Cmd):
         exit the game
 
         '''
-        ignorethis.write_progress(str(d.progress))
+        ignorethis.write_progress(progress=str(self.progress), leak_points=str(self.leak_points))
+
         sys.exit('bye!\n')
 
     # ported builtins
@@ -242,8 +245,11 @@ class HelloWorld(cmdcopy.Cmd):
                 self.stdout.write("logging out " + ('.' * x) + "\r")
                 time.sleep(0.25)
             self.stdout.write("\n")
+
             os.chdir('../../../user')
             d.login_count -= 1
+            if os.path.split(os.getcwd())[1] == '.LOST+FOUND':
+                os.chdir('../../../../user')
 
         elif d.login_count == 1:
             self.do_EOF(None)
@@ -282,10 +288,22 @@ class HelloWorld(cmdcopy.Cmd):
         self.progress = mail.mail_checkers(progress=d.progress, data=data)
 
     def do_leak(self, file):
-        pass
+        DotDotDot.ubscuredots(loops=20, texts="trying to leak")
 
-    def do_meter(self, none):
-        pass
+        if file in datastruct.data.point_1:
+            self.leak_points += 1
+        if file in datastruct.data.point_2:
+            self.leak_points += 2
+        if file in datastruct.data.point_3:
+            self.leak_points += 3
+
+
+    def do_lp(self, none):
+        '''
+        lp: prints your leak points!
+        syntax: lp
+        '''
+        self.stdout.write(str(self.leak_points) + "\n")
 
     def do_check(self, data):
         '''

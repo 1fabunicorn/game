@@ -66,10 +66,10 @@ class Cmd:
                 print('#' * int(x_axis - x_axis/5))
 
             if y == 2:
-                print("# Welcome to Resnix" + (" " * int(x_axis - x_axis/5 - 20)) + "#" )
+                print("# Welcome to Resnix" + (" " * int(x_axis - x_axis/5 - 20)) + "#")
 
             if y == 3:
-                print("# Be strong" + (" " * int(x_axis - x_axis/5 - 12)) + "#" ) # add DotDotDot
+                print("# try 'help' for help!" + (" " * int(x_axis - x_axis/5 - 23)) + "#") # add DotDotDot
 
             if y == 5 :  # and... if on the last line
                 print('#' * int(x_axis - x_axis/5))

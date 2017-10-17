@@ -18,10 +18,18 @@
 
 import time
 import sys
+import random
 
-
-def dot(loops, dots, timeper):
+def uniformdots(loops, dots, timeper):
     for i in range(loops):
         print(dots * i)
         sys.stdout.write("\033[F")  # Cursor up one line
         time.sleep(timeper)
+
+
+def ubscuredots(loops, texts):  # if this function is used more, I will make uniform dynamic
+    for i in range(loops):
+        sys.stdout.flush()
+        sys.stdout.write(texts + ("." * i) + "\r")
+        time.sleep(random.uniform(.05, .55))
+    sys.stdout.write("\n")

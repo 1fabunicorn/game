@@ -15,7 +15,6 @@
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
-from mainmodules import ignorethis
 
 
 class data:
@@ -25,3 +24,8 @@ class data:
     texts = {-1: "texts/welcome.blob", 0: "texts/choices.blob", 1: "texts/sleep.blob", 2: "texts/AKAspy.blob"}
     encrypted_files = {-1: '../encrypted_texts/welcome.encrypted', 0: '../encrypted_texts/choices.encrypted',
                        1: '../encrypted_texts/sleep.encrypted', 2: '../encrypted_texts/AKAspy.encrypted'}
+    # leak point lists
+
+    point_1 = ["template.txt", "qwerty.txt"]
+    point_2 = []
+    point_3 = []

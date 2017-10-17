@@ -69,13 +69,37 @@ def read_progress():
     try:
         with open('../saves', 'r') as f:
             p = f.readlines()
-        return int(''.join(p))
+        lst = [item for sublist in p for item in sublist]
+        flat = "".join(lst)
+        return int(flat.split()[0])
+    except IndexError:
+        p = -1
+        return p
+
     except IOError:
         p = -1
         return p
 
+def read_leakpoints():
+    try:
+        with open('../saves', 'r') as f:
+            p = f.readlines()
+        lst = [item for sublist in p for item in sublist]
+        flat = "".join(lst)
+        return int(flat.split()[1])
 
-def write_progress(variable):
+    except IndexError:
+        lp = 0
+        return lp
+
+    except IOError:
+        lp = 0
+        return lp
+
+
+def write_progress(progress, leak_points):
     with open('../saves', 'w+') as f:
-        f.write(variable)
-    return variable
+        f.write(progress)
+        f.write(" ")
+        f.write(leak_points)
+    return
