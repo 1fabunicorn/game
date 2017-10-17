@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """
     DotDotDot function
     Copyright (C) 2017,  Nova Trauben, noah.trauben@gmail.com
@@ -27,9 +28,9 @@ def uniformdots(loops, dots, timeper):
         time.sleep(timeper)
 
 
-def ubscuredots(loops, texts):  # if this function is used more, I will make uniform dynamic
+def ubscuredots(loops, text):  # if this function is used more, I will make uniform dynamic
     for i in range(loops):
         sys.stdout.flush()
-        sys.stdout.write(texts + ("." * i) + "\r")
-        time.sleep(random.uniform(.05, .55))
+        sys.stdout.write(text + ("▉" * i) + "\r")
+        time.sleep(random.uniform(.01, .55))
     sys.stdout.write("\n")

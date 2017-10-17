@@ -33,9 +33,9 @@ class HelloWorld(cmdcopy.Cmd):
     progress = ignorethis.read_progress()
     leak_points = ignorethis.read_leakpoints()
 
-    def do_EOF(self, line):
+    def do_exit(self, line):
         '''
-        syntax 'EOF'
+        syntax 'exit'
         exit the game
 
         '''
@@ -286,15 +286,20 @@ class HelloWorld(cmdcopy.Cmd):
 
         self.progress = mail.mail_checkers(progress=d.progress, data=data)
 
-    def do_leak(self, file):
-        DotDotDot.ubscuredots(loops=20, texts="trying to leak")
+    def do_leak(self, file): # need a way too
+        DotDotDot.ubscuredots(loops=15, text="trying to leak  ")
+
 
         if file in datastruct.data.point_1:
             self.leak_points += 1
+            self.stdout.write("success! 1 point\n")
         if file in datastruct.data.point_2:
             self.leak_points += 2
+            self.stdout.write("success! 2 points\n")
         if file in datastruct.data.point_3:
             self.leak_points += 3
+            self.stdout.write("success! 3 points\n")
+
 
 
     def do_lp(self, none):

@@ -4,8 +4,7 @@ strictness: medium
 max-line-length: 95
 ignore-paths:
   - dynamics/servers
-  - mainmodules/cmdcopy.py # this code is junking up the stats.
-          # I may fix it, but it works and I don't want to screw it up
+  - mainmodules/cmdcopy.py
 python-targets:
   - 2
   - 3
