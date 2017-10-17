@@ -5,6 +5,7 @@ max-line-length: 95
 ignore-paths:
   - dynamics/servers
   - mainmodules/cmdcopy.py
+# cmd modules code is yucky, I may fix in the future but it works
 python-targets:
   - 2
   - 3

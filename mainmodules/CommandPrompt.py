@@ -284,9 +284,9 @@ class HelloWorld(cmdcopy.Cmd):
 
         '''
 
-        self.progress = mail.mail_checkers(progress=d.progress, data=data)
+        self.progress = mail.mail_checkers(progress=self.progress, data=data)
 
-    def do_leak(self, file): # need a way too
+    def do_leak(self, file): # need a way too save which files are alredy "cashed in"
         DotDotDot.ubscuredots(loops=15, text="trying to leak  ")
 
 
@@ -316,9 +316,9 @@ class HelloWorld(cmdcopy.Cmd):
 
         '''
 
-        d.progress = tasks.task(d.progress)
-        self.stdout.write('\nyou are at the %s stage.' % (d.num_to_words[d.progress]))
-        self.stdout.write('\nrefer to "%s" for help on your task\n' % (d.texts[d.progress]))
+        self.progress = tasks.task(self.progress)
+        self.stdout.write('\nyou are at the %s stage.' % (d.num_to_words[self.progress]))
+        self.stdout.write('\nrefer to "%s" for help on your task\n' % (d.texts[self.progress]))
 
 if __name__ == 'mainmodules.CommandPrompt':
     HelloWorld()
