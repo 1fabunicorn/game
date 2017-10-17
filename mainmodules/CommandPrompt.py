@@ -20,7 +20,6 @@ import os
 from mainmodules import cmdcopy, ignorethis, tasks, mail, datastruct, DotDotDot
 import subprocess
 import time
-import random
 
 d = datastruct.data
 

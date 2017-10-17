@@ -11,7 +11,8 @@ __all__ = ["Cmd"]
 PROMPT = '(Cmd) '
 IDENTCHARS = string.ascii_letters + string.digits + '_'
 
-class Cmd:
+
+class Cmd():
     """A simple framework for writing line-oriented command interpreters.
 
     These are often useful for test harnesses, administrative tools, and
