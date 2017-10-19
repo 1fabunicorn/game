@@ -17,7 +17,7 @@
 """
 import sys
 import os
-from mainmodules import cmdcopy, ignorethis, tasks, mail, datastruct, DotDotDot
+from mainmodules import cmdcopy, ignorethis, tasks, mail, datastruct, DotDotDot, IO
 import subprocess
 import time
 
@@ -25,32 +25,34 @@ d = datastruct.data
 
 
 class HelloWorld(cmdcopy.Cmd):
-
-
+    """
+    main game loop of sorts
+    """
     if not os.path.split(os.getcwd())[1] == 'user':
         os.chdir('user')  # changes directory to 'user'
 
-    progress = ignorethis.read_progress()
-    leak_points = ignorethis.read_leakpoints()
+    # progress = IO.read_progress()
+    # leak_points = IO.read_leakpoints()
+    # leak_tracks = IO.read_lp_tracks()
+    saves = datastruct.data.saves
 
     def do_exit(self, line):
-        '''
+        """
         syntax 'exit'
         exit the game
 
-        '''
-        ignorethis.write_progress(progress=str(self.progress), leak_points=str(self.leak_points))
-
+        """
+        IO.write_progress(self.saves)
         sys.exit('bye!\n')
 
     # ported builtins
 
     def do_cd(self, directory):  # change directory
-        '''
+        """
         syntax 'cd [directory]'
         change to [directory]
 
-        '''
+        """
 
         args = directory.split(' ')
         # next 6 lines are cheater proofing
@@ -73,19 +75,19 @@ class HelloWorld(cmdcopy.Cmd):
             self.stdout.write('\nnot a directory\n')
 
     def do_pwd(self, nothing):
-        '''
+        """
         syntax 'pwd'
         self.stdout.write working directory
 
-        '''
+        """
         subprocess.check_call('pwd')
 
     def do_tree(self, nothing):
-        '''
+        """
         syntax 'tree'
         print the directory structure as a tree
 
-        '''
+        """
         # credit to dhobbs
         # https://stackoverflow.com/questions/9727673/list-directory-tree-structure-in-python/9728478#9728478
 
@@ -101,7 +103,7 @@ class HelloWorld(cmdcopy.Cmd):
                 self.stdout.write('\n')
 
     def do_ls(self, args):
-        '''
+        """
         syntax 'ls [optional args]'
         list files and directory's.
         If no args are specified, ls will self.stdout.write in alphabetical order
@@ -122,7 +124,7 @@ class HelloWorld(cmdcopy.Cmd):
             -1
               list one file per line.  Avoid '\n' with -q or -b
 
-        '''
+        """
 
         if not args:
             listdir = os.listdir(os.getcwd())
@@ -135,7 +137,7 @@ class HelloWorld(cmdcopy.Cmd):
             subprocess.check_call(['ls', args])
 
     def do_cat(self, file):
-        '''
+        """
         syntax 'cat [file_to_cat]'
 
         cat - self.stdout.write files on the standard output
@@ -148,25 +150,25 @@ class HelloWorld(cmdcopy.Cmd):
         -E, --show-ends
           display $ at end of each line
 
-        '''
+        """
 
         subprocess.call(['cat', file])
 
     def do_clear(self, nothing):
-        '''
+        """
         clear - clear the terminal screen
 
-        '''
+        """
         subprocess.call(['clear'])
 
     def do_nano(self, file):
-        '''
+        """
         syntax 'nano [file_to_edit_or_create]'
         nano - friendly text editor
 
         if [file] is omitted, a temporary file will be created
 
-        '''
+        """
         # hacker proofing
         if os.path.split(os.getcwd())[1] != os.path.split(file)[0] and file[0] == '/':
             self.stdout.write('not a directory')
@@ -181,14 +183,14 @@ class HelloWorld(cmdcopy.Cmd):
         os.system(osCommandString)
 
     def do_vi(self, file):
-        '''
+        """
         syntax 'nano [file_to_edit_or_create]'
         vi - a less friendly text editor
 
 
         if [file] is omitted, a temporary file will be created
 
-        '''
+        """
         # hacker proofing
         if os.path.split(os.getcwd())[1] != os.path.split(file)[0] and file[0] == '/':
             self.stdout.write('not a directory')
@@ -200,14 +202,14 @@ class HelloWorld(cmdcopy.Cmd):
         os.system(osCommandString)
 
     def do_vim(self, file):
-        '''
+        """
         syntax 'nano [file_to_edit_or_create]'
         vi - a less friendly text editor
 
 
         if [file] is omitted, a temporary file will be created
 
-        '''
+        """
         # hacker proofing
         if os.path.split(os.getcwd())[1] != os.path.split(file)[0] and file[0] == '/':
             self.stdout.write('not a directory')
@@ -219,11 +221,11 @@ class HelloWorld(cmdcopy.Cmd):
         os.system(osCommandString)
 
     def do_touch(self, f):
-        '''
+        """
         touch - "touch" or create a new file
         if file already exist, add an updated timestamp
 
-        '''
+        """
         try:
             subprocess.call(['touch', f])
         except:
@@ -251,7 +253,7 @@ class HelloWorld(cmdcopy.Cmd):
                 os.chdir('../../../../user')
 
         elif d.login_count == 1:
-            self.do_EOF(None)
+            self.do_exit(None)
 
     # Game related stuff
 
@@ -264,61 +266,86 @@ class HelloWorld(cmdcopy.Cmd):
         print(self.progress)
 
     def do_unlock(self, key):
-        '''
+        """
         unlock next task!
         syntax: unlock
 
-        '''
+        """
         if key:
             try:
-                ignorethis.write_plaintext(cyphertext=d.encrypted_files[d.progress], file_to_create=d.texts[d.progress], key=key)
+                IO.write_plaintext(cyphertext=d.encrypted_files[d.progress], file_to_create=d.texts[d.progress], key=key)
             except KeyError:
                 self.stdout.write("ds%^qWRONG3tgd%^KEY]\n")
         else:
             self.stdout.write("Please specify key\n")
 
     def do_mail(self, data):  # mail function
-        '''
+        """
         email a person!
         syntax: mail [person@domain.net] [email body]
 
-        '''
+        """
 
         self.progress = mail.mail_checkers(progress=self.progress, data=data)
 
-    def do_leak(self, file): # need a way too save which files are alredy "cashed in"
+    def do_leak(self, leak):
+
+
+        """
+        leak [file] to get points
+        """
         DotDotDot.ubscuredots(loops=15, text="trying to leak  ")
 
+        if leak in datastruct.data.point_1:
+            if self.leak_tracks[0][datastruct.data.point_1.index(leak)] == "F": #way of finding if
+                self.leak_points += 1                                  # leak was already 'leaked'
+                self.stdout.write("success! 1 point\n")
+                str(self.leak_tracks[0])[datastruct.data.point_1.index(leak)] = "T"
+                # self.leak_tracks[0][datastruct.data.point_1.index(leak)] == "T"
+                print(self.leak_tracks)
+            else:
+                self.stdout.write("Seems as though %s was already leaked\n" % leak)
 
-        if file in datastruct.data.point_1:
-            self.leak_points += 1
-            self.stdout.write("success! 1 point\n")
-        if file in datastruct.data.point_2:
-            self.leak_points += 2
-            self.stdout.write("success! 2 points\n")
-        if file in datastruct.data.point_3:
-            self.leak_points += 3
-            self.stdout.write("success! 3 points\n")
+        if leak in datastruct.data.point_2:
+            if datastruct.data.point_1[1][self.leak_tracks.index(leak)] == "F":
+                self.leak_points += 2
+                self.stdout.write("success! 2 points\n")
+                self.leak_tracks[1][datastruct.data.point_1.index(leak)] == "T"
+
+            else:
+                self.stdout.write("Seems as though %s was already leaked\n" % leak)
+
+        if leak in datastruct.data.point_3:
+            if datastruct.data.point_1[2][self.leak_tracks.index(leak)] == "F":
+                self.leak_points += 3
+                self.stdout.write("success! 3 points\n")
+                self.leak_tracks[2][datastruct.data.point_1.index(leak)] == "T"
+
+            else:
+                self.stdout.write("Seems as though %s was already leaked\n" % leak)
 
 
 
     def do_lp(self, none):
-        '''
+        """
         lp: prints your leak points!
         syntax: lp
-        '''
+        """
         self.stdout.write(str(self.leak_points) + "\n")
+        print(self.leak_tracks)
+
 
     def do_check(self, data):
-        '''
+        """
         help the user out if confused.
         ** work in progress **
 
-        '''
+        """
 
         self.progress = tasks.task(self.progress)
         self.stdout.write('\nyou are at the %s stage.' % (d.num_to_words[self.progress]))
         self.stdout.write('\nrefer to "%s" for help on your task\n' % (d.texts[self.progress]))
+
 
 if __name__ == 'mainmodules.CommandPrompt':
     HelloWorld()
