@@ -20,6 +20,7 @@ import os
 from mainmodules import cmdcopy, ignorethis, tasks, mail, datastruct, DotDotDot, IO
 import subprocess
 import time
+import pickle
 
 d = datastruct.data
 
@@ -34,7 +35,7 @@ class HelloWorld(cmdcopy.Cmd):
     # progress = IO.read_progress()
     # leak_points = IO.read_leakpoints()
     # leak_tracks = IO.read_lp_tracks()
-    saves = datastruct.data.saves
+    saves = pickle.load(open('../saves', 'r'))
 
     def do_exit(self, line):
         """
@@ -42,7 +43,7 @@ class HelloWorld(cmdcopy.Cmd):
         exit the game
 
         """
-        IO.write_progress(self.saves)
+        pickle.dump(self.saves, open("../saves", "wb"))
         sys.exit('bye!\n')
 
     # ported builtins
@@ -296,31 +297,28 @@ class HelloWorld(cmdcopy.Cmd):
         """
         DotDotDot.ubscuredots(loops=15, text="trying to leak  ")
 
-        if leak in datastruct.data.point_1:
-            if self.leak_tracks[0][datastruct.data.point_1.index(leak)] == "F": #way of finding if
-                self.leak_points += 1                                  # leak was already 'leaked'
+        if leak in datastruct.data.saves["point_1"]:
+            if self.saves["point_1"][leak] == 0:
+                self.saves["lp"] += 1
                 self.stdout.write("success! 1 point\n")
-                str(self.leak_tracks[0])[datastruct.data.point_1.index(leak)] = "T"
-                # self.leak_tracks[0][datastruct.data.point_1.index(leak)] == "T"
-                print(self.leak_tracks)
+                self.saves["point_1"][leak] = 1
             else:
                 self.stdout.write("Seems as though %s was already leaked\n" % leak)
 
-        if leak in datastruct.data.point_2:
-            if datastruct.data.point_1[1][self.leak_tracks.index(leak)] == "F":
-                self.leak_points += 2
-                self.stdout.write("success! 2 points\n")
-                self.leak_tracks[1][datastruct.data.point_1.index(leak)] == "T"
-
+        if leak in datastruct.data.saves["point_2"]:
+            if self.saves["point_2"][leak] == 0:
+                self.saves["lp"] += 2
+                self.stdout.write("success! 2 point\n")
+                self.saves["point_2"][leak] = 1
             else:
                 self.stdout.write("Seems as though %s was already leaked\n" % leak)
 
         if leak in datastruct.data.point_3:
-            if datastruct.data.point_1[2][self.leak_tracks.index(leak)] == "F":
-                self.leak_points += 3
-                self.stdout.write("success! 3 points\n")
-                self.leak_tracks[2][datastruct.data.point_1.index(leak)] == "T"
-
+            if leak in datastruct.data.saves["point_3"]:
+                if self.saves["point_3"][leak]==0:
+                    self.saves["lp"] += 3
+                    self.stdout.write("success! 3 point\n")
+                    self.saves["point_3"][leak] = 1
             else:
                 self.stdout.write("Seems as though %s was already leaked\n" % leak)
 
@@ -331,8 +329,8 @@ class HelloWorld(cmdcopy.Cmd):
         lp: prints your leak points!
         syntax: lp
         """
-        self.stdout.write(str(self.leak_points) + "\n")
-        print(self.leak_tracks)
+        # self.stdout.write(str(self.leak_points) + "\n")
+        print(self.saves)
 
 
     def do_check(self, data):

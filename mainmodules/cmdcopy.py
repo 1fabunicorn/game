@@ -1,4 +1,5 @@
 # Custom cmd module. Changed too show current directory at prompt
+# -*- coding: utf-8 -*-
 
 import os
 import string
@@ -61,22 +62,22 @@ class Cmd():
 
     def border(self):
         x_axis, y_axis = TermUtil.get_terminal_size()[0], TermUtil.get_terminal_size()[1],
-        print('\n\n\n\n')
+
         for y in range(1, 6):
             if y == 1:  # if on the first line
-                print('#' * int(x_axis - x_axis/5))
+                 print('▊' * int(x_axis - x_axis/5))
 
             if y == 2:
-                print("# Welcome to Resnix" + (" " * int(x_axis - x_axis/5 - 20)) + "#")
+                print("▊ Welcome to Resnix" + (" " * int(x_axis - x_axis/5 - 20)) + "▊")
 
             if y == 3:
-                print("# try 'help' for help!" + (" " * int(x_axis - x_axis/5 - 23)) + "#") # add DotDotDot
+                print("▊ try 'help' for help!" + (" " * int(x_axis - x_axis/5 - 23)) + "▊ ") # add DotDotDot
 
-            if y == 5 :  # and... if on the last line
-                print('#' * int(x_axis - x_axis/5))
+            if y == 5:  # and... if on the last line
+                print('▊' * int(x_axis - x_axis/5))
 
             else:  # prints side hashes if not the first or last
-                print('#' + (" " * int(x_axis - x_axis/5 - 2))  + "#")
+                print('▊' + (" " * int(x_axis - x_axis/5 - 2))  + "▊")
 
 
     def cmdloop(self, intro=None):

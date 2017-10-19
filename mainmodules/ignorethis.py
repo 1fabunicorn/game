@@ -1,6 +1,6 @@
 from __future__ import print_function
 """
-    vigenere cipher, as well as writing of cyphertext to file
+    vigenere cipher
     Copyright (C) 2017,  Nova Trauben, noah.trauben@gmail.com
 
     This program is free software: you can redistribute it and/or modify
