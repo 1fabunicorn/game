@@ -35,7 +35,10 @@ class HelloWorld(cmdcopy.Cmd):
     # progress = IO.read_progress()
     # leak_points = IO.read_leakpoints()
     # leak_tracks = IO.read_lp_tracks()
-    saves = pickle.load(open('../saves', 'r'))
+    try:
+        saves = pickle.load(open('../saves', 'r'))
+    except IOError:
+        saves = datastruct.data.saves
 
     def do_exit(self, line):
         """
