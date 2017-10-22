@@ -15,9 +15,6 @@
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
-
-# The similarity's between this and checks is extreme, I may refactor in the future
-
 from mainmodules import DotDotDot
 
 
@@ -37,13 +34,8 @@ def mail_checkers(data, progress):  # mail function
                 return progress
         except IndexError:
             print('No email specified')
-
-
-
         print('\n')
 
-    if progress == 0:
-        pass
-
-    if progress == 1:
-        pass
+    if progress == 0 or \
+       progress == 1:
+        print("ERROR: No need to email on this stage")

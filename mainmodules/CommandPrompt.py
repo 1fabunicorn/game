@@ -20,9 +20,12 @@ import os
 from mainmodules import cmdcopy, ignorethis, tasks, mail, datastruct, DotDotDot, IO
 import subprocess
 import time
-import cPickle as pickle
+try:
+    import cPickle as pickle
+except ImportError:
+    import _pickle as pickle
 
-d = datastruct.data
+d = datastruct.Data
 
 
 class HelloWorld(cmdcopy.Cmd):
@@ -36,9 +39,9 @@ class HelloWorld(cmdcopy.Cmd):
     # leak_points = IO.read_leakpoints()
     # leak_tracks = IO.read_lp_tracks()
     try:
-        saves = pickle.load(open('../saves', 'r'))
+        saves = pickle.load(open('../saves', 'rb'))
     except IOError:
-        saves = datastruct.data.saves
+        saves = datastruct.Data.saves
 
     def do_exit(self, line):
         """
@@ -46,7 +49,7 @@ class HelloWorld(cmdcopy.Cmd):
         exit the game
 
         """
-        pickle.dump(self.saves, open("../saves", "wb"), -1)
+        pickle.dump(self.saves, open("../saves", "wb+"), -1)
         sys.exit('bye!\n')
 
     # ported builtins
@@ -267,7 +270,8 @@ class HelloWorld(cmdcopy.Cmd):
 
     def do_progress(self, none):
 
-        print(self.progress)
+        print(self.saves["progress"])
+
 
     def do_unlock(self, key):
         """
@@ -290,17 +294,16 @@ class HelloWorld(cmdcopy.Cmd):
 
         """
 
-        self.progress = mail.mail_checkers(progress=self.progress, data=data)
+        self.saves["progress"] = mail.mail_checkers(progress=self.saves["progress"], data=data)
 
     def do_leak(self, leak):
-
-
         """
-        leak [file] to get points
+        leak a file to receve leak points (lp)
+        syntax: leak [file]
         """
         DotDotDot.ubscuredots(loops=15, text="trying to leak  ")
 
-        if leak in datastruct.data.saves["point_1"]:
+        if leak in datastruct.Data.saves["point_1"]:
             if self.saves["point_1"][leak] == 0:
                 self.saves["lp"] += 1
                 self.stdout.write("success! 1 point\n")
@@ -308,7 +311,7 @@ class HelloWorld(cmdcopy.Cmd):
             else:
                 self.stdout.write("Seems as though %s was already leaked\n" % leak)
 
-        if leak in datastruct.data.saves["point_2"]:
+        if leak in datastruct.Data.saves["point_2"]:
             if self.saves["point_2"][leak] == 0:
                 self.saves["lp"] += 2
                 self.stdout.write("success! 2 point\n")
@@ -316,8 +319,8 @@ class HelloWorld(cmdcopy.Cmd):
             else:
                 self.stdout.write("Seems as though %s was already leaked\n" % leak)
 
-        if leak in datastruct.data.point_3:
-            if leak in datastruct.data.saves["point_3"]:
+        if leak in datastruct.Data.point_3:
+            if leak in datastruct.Data.saves["point_3"]:
                 if self.saves["point_3"][leak]==0:
                     self.saves["lp"] += 3
                     self.stdout.write("success! 3 point\n")
@@ -342,10 +345,9 @@ class HelloWorld(cmdcopy.Cmd):
         ** work in progress **
 
         """
-
-        self.progress = tasks.task(self.progress)
-        self.stdout.write('\nyou are at the %s stage.' % (d.num_to_words[self.progress]))
-        self.stdout.write('\nrefer to "%s" for help on your task\n' % (d.texts[self.progress]))
+        self.saves["progress"] = tasks.task(self.saves["progress"])
+        self.stdout.write('\nyou are at the {} stage.'.format(d.num_to_words[self.saves["progress"]]))
+        print('\nrefer to {} for help on your task\n'.format(d.texts[self.saves["progress"]]))
 
 
 if __name__ == 'mainmodules.CommandPrompt':

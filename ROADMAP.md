@@ -16,11 +16,15 @@
     
        - [x] unlock with fear
 
- 4. [ ] **Task 2**
+ 4. [x] **Task 2**
 
-       - [ ] read mailing list
+       - [x] read mailing list
 
-       - [ ] exploit government server, finding some files
+       - [x] exploit government server, finding some files
 
-       - [ ] introduce 'leak meter' dynamic. 
+       - [x] introduce 'leak meter' dynamic. 
+       
+       - [ ] unlock with 'BIG BRO'
         
+ 5. [ ] **Task 3**
+ 

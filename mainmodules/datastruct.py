@@ -17,7 +17,10 @@
 """
 
 
-class data:
+class Data:
+    """
+    Game save class
+    """
     login_count = 1
     stages = 6
     num_to_words = {-1: 'welcome.blob', 0: "start", 1: "choices", 2: "second", 3: "third", 4: "forth", 5: "fifth"}

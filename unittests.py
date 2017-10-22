@@ -1,5 +1,4 @@
-from mainmodules import ignorethis
-from mainmodules import CommandPrompt
+from mainmodules import ignorethis, CommandPrompt, IO
 import unittest
 import os
 import random, string
@@ -30,7 +29,7 @@ class Test_Game(unittest.TestCase):
 
     def test_write_plaintext(self):
         # self.assertEqual(ignorethis.write_plaintext(cyphertext='encrypted_texts/welcome.encrypted', file_to_create='unittest.blob', key='5'), None)
-        self.assertRaises(TypeError, ignorethis.write_plaintext, [0, 1, 2, 3, 4, 666], 'unittest.blob', 'RandomString')
+        self.assertRaises(TypeError, IO.write_plaintext, [0, 1, 2, 3, 4, 666], 'unittest.blob', 'RandomString')
 
 
 """
@@ -60,16 +59,10 @@ def test_cd(capsys):
     assert err == ''
 
 
-def test_ls(capsys):
-    CommandPrompt.HelloWorld().do_ls('')
-    out, err = capsys.readouterr()
-    assert out == 'welcome.blob\n' # will do for now. should cd back to directory
-    assert err == ''
-
-
 def test_check():
     pass
     # not much needs to be implemented here yet.
+
 
 def test_touch():
     CommandPrompt.HelloWorld().do_touch('unittesting.test')

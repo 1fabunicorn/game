@@ -1,4 +1,6 @@
 from __future__ import print_function
+import re
+import timeit
 """
     vigenere cipher
     Copyright (C) 2017,  Nova Trauben, noah.trauben@gmail.com
@@ -30,7 +32,7 @@ def encrypt(plaintext, key):
 
     for keyindex, plaintext in enumerate(plaintext):
         cyphertext.append(ord(plaintext) + ord(key[keyindex % len_of_key]) % 255)
-    return cyphertext
+    return re.sub('[\[\],]', '', str(cyphertext))
 
 
 def decrypt(cyphertext, key):
