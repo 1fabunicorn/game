@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from __future__ import print_function
 """
     Input Output function
@@ -18,7 +19,6 @@ from __future__ import print_function
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
 import ignorethis
-import pickle
 
 
 def write_plaintext(cyphertext, key, file_to_create):
@@ -33,3 +33,25 @@ def write_plaintext(cyphertext, key, file_to_create):
     plaintext = ignorethis.decrypt(cyphertext_num, key)
     with open(file_to_create, 'w+') as f:
         print(plaintext, file=f)
+
+def print_intro():
+    spaces, bars, under_scores, new_lines = " ", "▇", "_", "\n"
+    print((115 * bars) + (new_lines) + (2 * spaces) + (3 * bars) + (6 * spaces) +
+          under_scores + (7 * spaces) + (2 * under_scores) + (spaces * 5) + (2 *
+          under_scores) + (29 * spaces) + (6 * under_scores) + (48 * spaces) +
+          (3 * bars) + new_lines + (2 * spaces) + (3 * bars) + (5 * spaces)
+          + '| |     / /__  / /________  ____ ___  ___     /_  __/___' + (45 * spaces)
+          + '▇▇▇\n  ▇▇▇     | | /| / / _ \\/ / ___/ __ \\/ __ `__ \\/ _ \\     '
+            '/ / / __ \\        ____  ___________ _   _______  __   ▇▇▇\n  ▇▇▇     '
+            '| |/ |/ /  __/ / /__/ /_/ / / / / / /  __/    / / / /_/ /       / __ \\/'
+            ' ____/ ___// | / /  _/ |/ /   ▇▇▇\n  ▇▇▇     |__/|__/\\___/_/\\'
+            '___/\\____/_/ /_/ /_/\\___/    /_/  \\____/       / /_/ / __/  \\__ '
+            '\\/  |/ // / |   /    ▇▇▇\n  ▇▇▇' + (35 * spaces) + '_'
+          + (30 * spaces) + ' / _, _/ /___ ___/ / /|  // / /   |     ▇▇▇\n'
+          '  ▇▇▇          _|_   _  _  |_  _ |._  _|__  _ |_  _ | _           '
+          '     /_/ |_/_____//____/_/ |_/___//_/|_|     ▇▇▇\n  ▇▇▇        '
+          '   |_\\/|_)(/_ | |(/_||_)  |(_)|  | |(/_||_)' + (55 * spaces)
+          + '▇▇▇\n  ▇▇▇             / |             |                  |'
+          + (57 * spaces) + '▇▇▇\n  ▇▇▇' + (106 * spaces) + (3 * bars)
+          + (new_lines) + (2 * spaces) + (3 * bars) + (106 * spaces) + (3 * bars)
+          + (new_lines) + (115 * bars))

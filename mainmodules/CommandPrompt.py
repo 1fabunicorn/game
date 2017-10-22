@@ -20,7 +20,7 @@ import os
 from mainmodules import cmdcopy, ignorethis, tasks, mail, datastruct, DotDotDot, IO
 import subprocess
 import time
-import pickle
+import cPickle as pickle
 
 d = datastruct.data
 
@@ -43,7 +43,7 @@ class HelloWorld(cmdcopy.Cmd):
         exit the game
 
         """
-        pickle.dump(self.saves, open("../saves", "wb"))
+        pickle.dump(self.saves, open("../saves", "wb"), -1)
         sys.exit('bye!\n')
 
     # ported builtins

@@ -3,7 +3,7 @@
 
 import os
 import string
-from mainmodules import TermUtil
+from mainmodules import TermUtil, IO
 import subprocess
 
 
@@ -63,22 +63,27 @@ class Cmd():
     def border(self):
         x_axis, y_axis = TermUtil.get_terminal_size()[0], TermUtil.get_terminal_size()[1],
 
-        for y in range(1, 6):
-            if y == 1:  # if on the first line
-                 print('▊' * int(x_axis - x_axis/5))
+        if x_axis > 116:  # pretty welcome screen
+            IO.print_intro()
 
-            if y == 2:
-                print("▊ Welcome to Resnix" + (" " * int(x_axis - x_axis/5 - 20)) + "▊")
+        else:
+            for y in range(1, 6):
+                if y==1:  # if on the first line
+                    print('▊' * int(x_axis - x_axis / 5))
 
-            if y == 3:
-                print("▊ try 'help' for help!" + (" " * int(x_axis - x_axis/5 - 23)) + "▊ ") # add DotDotDot
+                if y==2:
+                    print(
+                    "▊ Welcome to Resnix" + (" " * int(x_axis - x_axis / 5 - 20)) + "▊")
 
-            if y == 5:  # and... if on the last line
-                print('▊' * int(x_axis - x_axis/5))
+                if y==3:
+                    print("▊ try 'help' for help!" + (
+                    " " * int(x_axis - x_axis / 5 - 23)) + "▊ ")  # add DotDotDot
 
-            else:  # prints side hashes if not the first or last
-                print('▊' + (" " * int(x_axis - x_axis/5 - 2))  + "▊")
+                if y==5:  # and... if on the last line
+                    print('▊' * int(x_axis - x_axis / 5))
 
+                else:  # prints side hashes if not the first or last
+                    print('▊' + (" " * int(x_axis - x_axis / 5 - 2)) + "▊")
 
     def cmdloop(self, intro=None):
         """Repeatedly issue a prompt, accept input, parse an initial prefix

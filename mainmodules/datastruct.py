@@ -5,7 +5,7 @@
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation, either version 3 of the License, or
-    (at your option) any later version.
+    (at your option) any later  version.
 
     This program is distributed in the hope that it will be useful,
     but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -31,7 +31,3 @@ class data:
             "point_3": {'q.txt': 0, 'w.txt': 0, 'e.txt': 0, 'r.txt': 0},
             "progress": -1, "lp": 0
             }
-
-    point_1 = {"template.txt": 0, "qwerty.txt": 0}
-    point_2 = {'b.txt': 0, 'l.txt': 0, 'a.txt': 0, 't.txt': 0}
-    point_3 = {'q.txt': 0, 'w.txt': 0, 'e.txt': 0, 'r.txt': 0}
