@@ -301,33 +301,35 @@ class GameLoop(cmdcopy.Cmd):
         leak a file to receve leak points (lp)
         syntax: leak [file]
         """
-        DotDotDot.ubscuredots(loops=15, text="trying to leak  ")
+        if leak:
+            DotDotDot.ubscuredots(loops=15, text="trying to leak  ")
 
-        if leak in datastruct.Data.saves["point_1"]:
-            if self.saves["point_1"][leak] == 0:
-                self.saves["lp"] += 1
-                self.stdout.write("success! 1 point\n")
-                self.saves["point_1"][leak] = 1
-            else:
-                self.stdout.write("Seems as though %s was already leaked\n" % leak)
+            if leak in self.saves["point_1"]:
+                if self.saves["point_1"][leak] == 0:
+                    self.saves["lp"] += 1
+                    self.stdout.write("success! 1 point\n")
+                    self.saves["point_1"][leak] = 1
+                else:
+                    self.stdout.write("Seems as though %s was already leaked\n" % leak)
 
-        if leak in datastruct.Data.saves["point_2"]:
-            if self.saves["point_2"][leak] == 0:
-                self.saves["lp"] += 2
-                self.stdout.write("success! 2 point\n")
-                self.saves["point_2"][leak] = 1
-            else:
-                self.stdout.write("Seems as though %s was already leaked\n" % leak)
+            if leak in datastruct.Data.saves["point_2"]:
+                if self.saves["point_2"][leak] == 0:
+                    self.saves["lp"] += 2
+                    self.stdout.write("success! 2 point\n")
+                    self.saves["point_2"][leak] = 1
+                else:
+                    self.stdout.write("Seems as though %s was already leaked\n" % leak)
 
-        if leak in datastruct.Data.point_3:
             if leak in datastruct.Data.saves["point_3"]:
-                if self.saves["point_3"][leak]==0:
-                    self.saves["lp"] += 3
-                    self.stdout.write("success! 3 point\n")
-                    self.saves["point_3"][leak] = 1
-            else:
-                self.stdout.write("Seems as though %s was already leaked\n" % leak)
-
+                if leak in self.saves["point_3"]:
+                    if self.saves["point_3"][leak] == 0:
+                        self.saves["lp"] += 3
+                        self.stdout.write("success! 3 point\n")
+                        self.saves["point_3"][leak] = 1
+                else:
+                    self.stdout.write("Seems as though %s was already leaked\n" % leak)
+        else:
+            self.stdout.write("Watcha gonna leak...? cool cat :)\n")
 
 
     def do_lp(self, none):
@@ -337,21 +339,27 @@ class GameLoop(cmdcopy.Cmd):
         """
         # self.stdout.write(str(self.leak_points) + "\n")
         print(self.saves)
+        print(self.saves["point_1"]["template.txt"])
 
 
-    def do_check(self, data):
+    def do_forward(self, none):
+        """
+        See if you can progress! AKA get new tasks
+        syntax: progress
+        """
+        self.saves["progress"] = tasks.task(self.saves["progress"], self.saves)
+
+    def do_confused(self, none):
         """
         help the user out if confused.
         ** work in progress **
 
         """
-        #print(d.num_to_words[self.saves["progress"]])
-        #print(self.saves)
-        self.saves["progress"] = tasks.task(self.saves["progress"])
-
-        self.stdout.write('\nyou are at the {} stage\n'.format(d.num_to_words[self.saves["progress"]]))
-        self.stdout.write('\nrefer to {} for help on your task\n'.format(d.texts[self.saves["progress"]]))
-
+        try:
+            self.stdout.write('\nyou are at the {} stage\n'.format(d.num_to_words[self.saves["progress"]]))
+            self.stdout.write('\nrefer to {} for help on your task\n'.format(d.texts[self.saves["progress"]]))
+        except KeyError:
+            self.stdout.write("seems as though you reached the end... try 'forward' for more info")
 
 if __name__ == 'mainmodules.GameLoop':
     GameLoop()

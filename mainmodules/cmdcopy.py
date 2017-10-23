@@ -335,6 +335,7 @@ class Cmd():
             self.print_topics(self.misc_header,  help.keys(),15,80)
             self.print_topics(self.undoc_header, cmds_undoc, 15,80)
 
+
     def print_topics(self, header, cmds, cmdlen, maxcol):
         if cmds:
             self.stdout.write("%s\n"%str(header))

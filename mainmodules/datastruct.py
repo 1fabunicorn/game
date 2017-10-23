@@ -36,5 +36,5 @@ class Data:
             "point_1": {"template.txt": 0, "qwerty.txt": 0},
             "point_2": {'b.txt': 0, 'l.txt': 0, 'a.txt': 0, 't.txt': 0},
             "point_3": {'q.txt': 0, 'w.txt': 0, 'e.txt': 0, 'r.txt': 0},
-            "progress": 2, "lp": 0
+            "progress": 1, "lp": 0
             }

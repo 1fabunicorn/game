@@ -17,7 +17,6 @@
 """
 
 from mainmodules import CommandPrompt
-from mainmodules import datastruct
 import pickle
 
 
