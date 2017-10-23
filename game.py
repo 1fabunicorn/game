@@ -17,10 +17,17 @@
 """
 
 from mainmodules import CommandPrompt
+from mainmodules import datastruct
+import pickle
 
 
 def main():
-    CommandPrompt.HelloWorld().cmdloop()
+    try:
+        CommandPrompt.GameLoop().cmdloop()
+    except Exception:
+        # clean exit if game 'crashes'
+        print('EEKkk... I crashed. Hopefully I cleaned up')
+        pickle.dump(CommandPrompt.GameLoop.saves, open("../saves", "wb+"), -1)
 
 
 if __name__ == '__main__':

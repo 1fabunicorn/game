@@ -28,20 +28,20 @@ except ImportError:
 d = datastruct.Data
 
 
-class HelloWorld(cmdcopy.Cmd):
+class GameLoop(cmdcopy.Cmd):
     """
     main game loop of sorts
     """
     if not os.path.split(os.getcwd())[1] == 'user':
         os.chdir('user')  # changes directory to 'user'
 
-    # progress = IO.read_progress()
-    # leak_points = IO.read_leakpoints()
-    # leak_tracks = IO.read_lp_tracks()
+
     try:
         saves = pickle.load(open('../saves', 'rb'))
     except IOError:
         saves = datastruct.Data.saves
+    progress = saves["progress"]
+
 
     def do_exit(self, line):
         """
@@ -272,7 +272,6 @@ class HelloWorld(cmdcopy.Cmd):
 
         print(self.saves["progress"])
 
-
     def do_unlock(self, key):
         """
         unlock next task!
@@ -281,7 +280,8 @@ class HelloWorld(cmdcopy.Cmd):
         """
         if key:
             try:
-                IO.write_plaintext(cyphertext=d.encrypted_files[d.progress], file_to_create=d.texts[d.progress], key=key)
+                IO.write_plaintext(cyphertext=d.encrypted_files[self.saves["progress"]],
+                                   file_to_create=d.texts[self.saves["progress"]], key=key)
             except KeyError:
                 self.stdout.write("ds%^qWRONG3tgd%^KEY]\n")
         else:
@@ -345,10 +345,13 @@ class HelloWorld(cmdcopy.Cmd):
         ** work in progress **
 
         """
+        #print(d.num_to_words[self.saves["progress"]])
+        #print(self.saves)
         self.saves["progress"] = tasks.task(self.saves["progress"])
-        self.stdout.write('\nyou are at the {} stage.'.format(d.num_to_words[self.saves["progress"]]))
-        print('\nrefer to {} for help on your task\n'.format(d.texts[self.saves["progress"]]))
+
+        self.stdout.write('\nyou are at the {} stage\n'.format(d.num_to_words[self.saves["progress"]]))
+        self.stdout.write('\nrefer to {} for help on your task\n'.format(d.texts[self.saves["progress"]]))
 
 
-if __name__ == 'mainmodules.CommandPrompt':
-    HelloWorld()
+if __name__ == 'mainmodules.GameLoop':
+    GameLoop()

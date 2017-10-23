@@ -43,17 +43,17 @@ def randomstr( n):
     return ''.join(random.choice(letters) for i in range(n))
 def test_cd(capsys):
 
-    CommandPrompt.HelloWorld().do_cd('foo')
+    CommandPrompt.GameLoop().do_cd('foo')
     out, err = capsys.readouterr()
     assert out == '\nnot a directory\n'
     assert err == ''
 
-    CommandPrompt.HelloWorld().do_cd('texts')
+    CommandPrompt.GameLoop().do_cd('texts')
     out, err = capsys.readouterr()
     assert out == ''
     assert err == ''
 
-    CommandPrompt.HelloWorld().do_cd(randomstr(10))
+    CommandPrompt.GameLoop().do_cd(randomstr(10))
     out, err = capsys.readouterr()
     assert out == '\nnot a directory\n'
     assert err == ''
@@ -65,12 +65,12 @@ def test_check():
 
 
 def test_touch():
-    CommandPrompt.HelloWorld().do_touch('unittesting.test')
+    CommandPrompt.GameLoop().do_touch('unittesting.test')
     assert os.path.isfile('unittesting.test')
     subprocess.call(['rm', 'unittesting.test'])
 
     rstring = randomstr(35)
-    CommandPrompt.HelloWorld().do_touch(rstring)
+    CommandPrompt.GameLoop().do_touch(rstring)
     assert os.path.isfile(rstring)
     subprocess.call(['rm', rstring])
 
