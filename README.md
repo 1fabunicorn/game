@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/1fabunicorn/resnix.svg?branch=master)](https://travis-ci.org/1fabunicorn/resnix) [![Code Health](https://landscape.io/github/1fabunicorn/resnix/master/landscape.svg?style=flat)](https://landscape.io/github/1fabunicorn/resnix/master)
+[![Build Status](https://travis-ci.org/1fabunicorn/resnix.svg?branch=master)](https://travis-ci.org/1fabunicorn/resnix) [![Codacy](https://api.codacy.com/project/badge/Grade/150fc2f4f7b448469e17ced1a2b250fd)](https://www.codacy.com/app/noah.trauben/resnix?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=1fabunicorn/resnix&amp;utm_campaign=Badge_Grade)
 
 
 # Resnix

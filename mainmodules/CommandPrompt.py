@@ -237,6 +237,7 @@ class GameLoop(cmdcopy.Cmd):
             subprocess.call(['touch', f])
         except:
             self.stdout.write("file not specified")
+
     # ssh related functions
 
     def do_ssh(self, address):
@@ -331,16 +332,13 @@ class GameLoop(cmdcopy.Cmd):
         else:
             self.stdout.write("Watcha gonna leak...? cool cat :)\n")
 
-
     def do_lp(self, none):
         """
         lp: prints your leak points!
         syntax: lp
         """
-        # self.stdout.write(str(self.leak_points) + "\n")
         print(self.saves)
         print(self.saves["point_1"]["template.txt"])
-
 
     def do_forward(self, none):
         """
@@ -360,6 +358,15 @@ class GameLoop(cmdcopy.Cmd):
             self.stdout.write('\nrefer to {} for help on your task\n'.format(d.texts[self.saves["progress"]]))
         except KeyError:
             self.stdout.write("seems as though you reached the end... try 'forward' for more info")
+
+    def do_findpk(self, ip):
+        """
+        find the private key hash of a server
+        Comes in user lator on
+        syntax: findpk [ip addr of server]
+
+        """
+        pass
 
 if __name__ == 'mainmodules.GameLoop':
     GameLoop()

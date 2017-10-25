@@ -1,0 +1,21 @@
+---
+engines:
+ rubocop:
+   enabled: true
+ prospector:
+   enabled: true
+ pylint: true
+
+ duplication:
+   enabled: true
+
+ metrics:
+   enabled: true
+
+languages:
+  python:
+
+exclude_paths:
+  - dynamics/servers
+  - user
+  - mainmodules/cmdcopy.py
