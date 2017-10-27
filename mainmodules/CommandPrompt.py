@@ -17,7 +17,7 @@
 """
 import sys
 import os
-from mainmodules import cmdcopy, ignorethis, tasks, mail, datastruct, DotDotDot, IO
+from mainmodules import cmdcopy, tasks, mail, datastruct, dotdotdot, IO, scripts
 import subprocess
 import time
 try:
@@ -243,10 +243,24 @@ class GameLoop(cmdcopy.Cmd):
     def do_ssh(self, address):
         if address == '58.53.146.123':
             self.stdout.write("logging into 58.53.146.123")
-            time.sleep(1)
+            time.sleep(3)
             self.stdout.write("  ...success!\n")
             os.chdir('../dynamics/servers/58.53.146.123')
             d.login_count += 1
+        elif int(address[-3:]) > 123:
+            password = IO.pw()
+            if password == 'watch':
+                self.stdout.write("logging into {}".format(address))
+                try:
+                    os.chdir('../dynamics/servers/{}'.format(address))
+                    time.sleep(3)
+                    self.stdout.write("  ...success!\n")
+                    d.login_count += 1
+                except OSError:
+                    self.stdout.write("ssh: Could not resolve hostname {}: nodename nor "
+                                      "servname provided, or not known".format(address))
+            else:
+                self.stdout.write("Incorrect password")
 
     def do_logout(self, none):
         if d.login_count > 1:
@@ -303,7 +317,7 @@ class GameLoop(cmdcopy.Cmd):
         syntax: leak [file]
         """
         if leak:
-            DotDotDot.ubscuredots(loops=15, text="trying to leak  ")
+            dotdotdot.ubscuredots(loops=15, text="trying to leak  ")
 
             if leak in self.saves["point_1"]:
                 if self.saves["point_1"][leak] == 0:
@@ -361,12 +375,29 @@ class GameLoop(cmdcopy.Cmd):
 
     def do_findpk(self, ip):
         """
-        find the private key hash of a server
+        find the private key hash of a server using reverse engenering
         Comes in user lator on
         syntax: findpk [ip addr of server]
 
         """
-        pass
+        if ip:
+            dotdotdot.ubscuredots(loops=5, text="Engineering... ")
+
+            self.stdout.write("hash of {} is 292b0901993f7e9d9a0d9b80542f9e59505ba5be\n".format(ip))
+        else:
+            self.stdout.write("Error: specify IP\n")
+
+    def do_python(self, script):
+        """
+        Run an 'approved' python script!
+        if you get 'invalid syntax', make sure the file you enter is 'approved'
+
+        """
+        if script in datastruct.Data.python_scripts:
+            if script == 'brute_password.py' or script == 'brute_password':
+                scripts.brute_password()
+        else:
+            self.stdout.write("invalid syntax")
 
 if __name__ == 'mainmodules.GameLoop':
     GameLoop()

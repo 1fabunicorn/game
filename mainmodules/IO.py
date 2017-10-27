@@ -55,3 +55,13 @@ def print_intro():
           + (57 * spaces) + '▇▇▇\n  ▇▇▇' + (106 * spaces) + (3 * bars)
           + (new_lines) + (2 * spaces) + (3 * bars) + (106 * spaces) + (3 * bars)
           + (new_lines) + (115 * bars))
+
+def pw():
+    try:
+        password = raw_input("password: ")
+    except NameError:
+        input("password:")
+    if password:
+        return password
+    else:
+        return None

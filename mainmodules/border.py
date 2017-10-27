@@ -17,11 +17,11 @@
 """
 
 
-from mainmodules import TermUtil
+from mainmodules import termutil
 
 
 def border():
-    x_axis, y_axis = TermUtil.get_terminal_size()[0], TermUtil.get_terminal_size()[1],
+    x_axis, y_axis = termutil.get_terminal_size()[0], termutil.get_terminal_size()[1],
     for y in range(1, y_axis-1):
 
         if y == 1: # if on the first line

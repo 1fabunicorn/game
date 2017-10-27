@@ -32,5 +32,5 @@ def ubscuredots(loops, text):  # if this function is used more, I will make unif
     for i in range(loops):
         sys.stdout.flush()
         sys.stdout.write(text + ("▉" * i) + "\r")
-        time.sleep(random.uniform(.01, .55))
+        time.sleep(random.uniform(.1, .7))
     sys.stdout.write("\n")

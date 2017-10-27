@@ -4,7 +4,8 @@ engines:
    enabled: true
  prospector:
    enabled: true
- pylint: true
+ pylint:
+   enabled: true
 
  duplication:
    enabled: true

@@ -1,6 +1,5 @@
 from __future__ import print_function
 import re
-import timeit
 """
     vigenere cipher
     Copyright (C) 2017,  Nova Trauben, noah.trauben@gmail.com

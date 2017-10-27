@@ -9,4 +9,6 @@ _-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-
 HoneyPot [alias user@resnix.net]
                     ______________________________
 
-they are smart, i will say that. they scored quite high on the perspective test
+they are smart, i will say that. they scored quite high on the perspective test.
+I gave them this task which includes 'hacking' into us. I get the IT guy to configure
+a few phony servers, which will make them feel 'successful' in getting into 'us'.

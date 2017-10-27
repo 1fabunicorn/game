@@ -24,7 +24,7 @@
 
        - [x] introduce 'leak meter' dynamic. 
        
-       - [ ] unlock with 'BIG BRO'
+       - [x] unlock task three with 'BIG BRO'
         
  5. [ ] **Task 3**
  

@@ -1,5 +1,5 @@
 """
-    mail module
+    scripts - Approved python scripts user uses
     Copyright (C) 2017,  Nova Trauben, noah.trauben@gmail.com
 
     This program is free software: you can redistribute it and/or modify
@@ -15,27 +15,7 @@
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
-from mainmodules import dotdotdot
-
-
-def mail_checkers(data, progress):  # mail function
-
-    data = data.split()
-    if progress == -1:
-        try:
-            if data[0] == 'anon@resnix.net':
-
-                print('welcome to the club')
-                dotdotdot.uniformdots(20, '.', .2)
-                print('receiving data')
-                dotdotdot.uniformdots(14, '.', .2)
-                print('Quick! Change line two of etc/ftp.comf to true')
-                progress += 0
-                return progress
-        except IndexError:
-            print('No email specified')
-        print('\n')
-
-    if progress == 0 or \
-       progress == 1:
-        print("ERROR: No need to email on this stage")
+def brute_password():
+    for i in range(0, 38703860, 4):
+        print('\r Attempt number: ' + str(i) + '\r'),
+    print("password is 'watch' found in 38703860 guesses.")

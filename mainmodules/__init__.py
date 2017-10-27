@@ -1,3 +1,3 @@
 __all__ = ['border', 'cmdcopy', 'CommandPrompt',
-           'datastruct', 'DotDotDot', 'ignorethis',
-           'IO', 'mail', 'tasks', 'TermUtil', ]
+           'datastruct', 'dotdotdot', 'filegens', 'ignorethis',
+           'IO', 'mail', 'scripts', 'tasks', 'termutil', ]

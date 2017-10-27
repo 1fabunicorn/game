@@ -15,6 +15,7 @@
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
+from mainmodules import filegens
 def task(progress, saves):
 
     if progress == -1:
@@ -84,8 +85,15 @@ def task(progress, saves):
             progress += 1
         return progress
 
+    if progress == 3:
+        try:
+            filegens.task3_servers()
+        except OSError:
+            pass
 
-    if progress > 2:
+
+
+    if progress > 3:
         print("It seems you have reached the end of the game...")
         print("NOPE! I am still making it!")
         print("Stay tuned! :)")

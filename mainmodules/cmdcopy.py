@@ -3,7 +3,7 @@
 
 import os
 import string
-from mainmodules import TermUtil, IO
+from mainmodules import termutil, IO
 import subprocess
 
 
@@ -61,7 +61,7 @@ class Cmd():
         self.completekey = completekey
 
     def border(self):
-        x_axis, y_axis = TermUtil.get_terminal_size()[0], TermUtil.get_terminal_size()[1],
+        x_axis, y_axis = termutil.get_terminal_size()[0], termutil.get_terminal_size()[1],
 
         if x_axis > 116:  # pretty welcome screen
             IO.print_intro()
