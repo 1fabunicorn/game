@@ -307,6 +307,8 @@ class Cmd():
                 return
             func()
         else:
+            print("Welcome to Resnix the game. Below are commands you can use\nuse "
+                  "'confused' if you need help on what you are required to do.")
             names = self.get_names()
             cmds_doc = []
             cmds_undoc = []
