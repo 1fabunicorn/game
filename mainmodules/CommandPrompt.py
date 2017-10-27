@@ -65,21 +65,21 @@ class GameLoop(cmdcopy.Cmd):
         # next 6 lines are cheater proofing
 
         if args[0] == 'resnix':
-            self.stdout.write('\nnot a directory\n')
+            self.stdout.write('not a directory\n')
             return
 
         if os.path.split(os.getcwd())[1] == '58.53.146.123' and args[0] == '..': # task 1 server
-            self.stdout.write('\nnot a directory\n')
+            self.stdout.write('not a directory\n')
             return
 
         elif os.path.split(os.getcwd())[1] == 'user' and args[0] == '..':
-            self.stdout.write('\nnot a directory\n')
+            self.stdout.write('not a directory\n')
             return
 
         try:
             os.chdir(args[0])
         except OSError:
-            self.stdout.write('\nnot a directory\n')
+            self.stdout.write('not a directory\n')
 
     def do_pwd(self, nothing):
         """
@@ -263,16 +263,19 @@ class GameLoop(cmdcopy.Cmd):
                 self.stdout.write("Incorrect password")
 
     def do_logout(self, none):
-        if d.login_count > 1:
-            for x in range(1,4):
+        if d.login_count >= 2:
+            for x in range(1, 4):
                 self.stdout.write("logging out " + ('.' * x) + "\r")
                 time.sleep(0.25)
             self.stdout.write("\n")
-
-            os.chdir('../../../user')
             d.login_count -= 1
-            if os.path.split(os.getcwd())[1] == '.LOST+FOUND':
+            if os.path.split(os.getcwd())[1] == '58.53.146.123':
+                os.chdir('../../../user')
+            if os.path.split(os.getcwd())[1] == '.LOST+FOUND' or \
+                    os.path.split(os.getcwd())[1] == 'home':
                 os.chdir('../../../../user')
+            if os.path.split(os.getcwd())[1] == 'Documents':
+                os.chdir('../../../../../user')
 
         elif d.login_count == 1:
             self.do_exit(None)
@@ -280,8 +283,14 @@ class GameLoop(cmdcopy.Cmd):
     # Game related stuff
 
     def do_browser(self,  webaddress):
-        if webaddress.lower() == 'helloworld.net':
-            os.system("lynx ../dynamics/htmls/helloworld.net.html")
+        if webaddress:
+            if webaddress.lower() == 'helloworld.net':
+                os.system("lynx ../dynamics/htmls/helloworld.net.html")
+            else:
+                time.sleep(2)
+                self.stdout.write("server failed to connect\n")
+        else:
+            self.stdout.write("ERROR: no address specified\n")
 
     def do_progress(self, none):
 
@@ -351,7 +360,7 @@ class GameLoop(cmdcopy.Cmd):
         lp: prints your leak points!
         syntax: lp
         """
-        print(self.saves)
+        print(d.login_count)
         print(self.saves["point_1"]["template.txt"])
 
     def do_forward(self, none):
@@ -397,7 +406,7 @@ class GameLoop(cmdcopy.Cmd):
             if script == 'brute_password.py' or script == 'brute_password':
                 scripts.brute_password()
         else:
-            self.stdout.write("invalid syntax")
+            self.stdout.write("ERROR: invalid syntax\n")
 
 if __name__ == 'mainmodules.GameLoop':
     GameLoop()
